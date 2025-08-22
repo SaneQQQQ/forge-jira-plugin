@@ -5,7 +5,7 @@ modules:
       resolver:
         function: resolver
       render: native
-      title: forge-jira-plugin
+      title: Forge Jira Plugin
   function:
     - key: resolver
       handler: index.handler
@@ -18,3 +18,10 @@ app:
     memoryMB: 256
     architecture: arm64
   id: ari:cloud:ecosystem::app/71a30bf9-219b-4c54-9963-10be5cbc4d59
+permissions:
+  scopes:
+    - storage:app
+  external:
+    fetch:
+      backend:
+        - address: api.github.com
