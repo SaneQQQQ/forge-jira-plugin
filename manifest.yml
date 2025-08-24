@@ -1,17 +1,32 @@
 modules:
   jira:adminPage:
-    - key: forge-jira-plugin-hello-world-admin-page
-      resource: main
+    - key: forge-jira-plugin-token-setup
+      resource: token-setup-resource
       resolver:
-        function: resolver
+        function: token-setup-resolver
       render: native
       title: Forge Jira Plugin
+      description: Token Setup
+      label: Token Setup
+  jira:issueContext:
+    - key: forge-jira-plugin-issue-context
+      resource: issue-context-resource
+      resolver:
+        function: issue-context-resolver
+      render: native
+      title: Forge Jira Plugin
+      description: Issue Context
+      label: Issue Context
   function:
-    - key: resolver
-      handler: index.handler
+    - key: token-setup-resolver
+      handler: index.tokenSetupHandler
+    - key: issue-context-resolver
+      handler: index.issueContextHandler
 resources:
-  - key: main
-    path: src/frontend/index.jsx
+  - key: token-setup-resource
+    path: src/frontend/tokenSetup.jsx
+  - key: issue-context-resource
+    path: src/frontend/issueContext.jsx
 app:
   runtime:
     name: nodejs22.x
