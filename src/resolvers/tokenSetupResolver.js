@@ -18,7 +18,7 @@ resolver.define('isValidToken', async (req) => {
 
         return response.status === 200;
     } catch (err) {
-        throw new Error('Token validation check failed');
+        return false;
     }
 });
 
@@ -42,4 +42,4 @@ resolver.define('deleteToken', async () => {
     return true;
 })
 
-export const handler = resolver.getDefinitions();
+export const tokenSetupHandler = resolver.getDefinitions();
