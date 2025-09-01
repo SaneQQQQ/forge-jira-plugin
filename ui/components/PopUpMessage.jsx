@@ -1,39 +1,41 @@
 import React from 'react';
-import {Box, SectionMessage, Text} from '@forge/react';
+import {Box, SectionMessage} from '@forge/react';
 
-const popUpMessageType = {
+const POPUP_MESSAGE_TYPE = Object.freeze({
     ERROR: 'error',
     SAVED: 'saved',
-    REMOVED: 'removed'
-}
+    REMOVED: 'removed',
+});
 
-const messages = {
-    [popUpMessageType.SAVED]: {
+const MESSAGES = Object.freeze({
+    [POPUP_MESSAGE_TYPE.SAVED]: {
         appearance: 'success',
         text: 'Your token has been successfully saved.',
     },
-    [popUpMessageType.REMOVED]: {
+    [POPUP_MESSAGE_TYPE.REMOVED]: {
         appearance: 'success',
         text: 'Your token has been successfully removed.',
     },
-    [popUpMessageType.ERROR]: {
+    [POPUP_MESSAGE_TYPE.ERROR]: {
         appearance: 'error',
         text: 'Your token is invalid or expired. Please generate a new one and try again.',
     },
-};
+});
 
-const PopUpMessage = ({ type }) => {
-    if (!type) {
+const PopUpMessage = ({type}) => {
+    const message = MESSAGES[type];
+
+    if (!message) {
         return null;
     }
 
     return (
         <Box paddingBlockEnd="space.200">
-            <SectionMessage appearance={messages[type].appearance}>
-                <Text>{messages[type].text}</Text>
+            <SectionMessage appearance={message.appearance}>
+                {message.text}
             </SectionMessage>
         </Box>
     );
-}
+};
 
-export { popUpMessageType, PopUpMessage as default };
+export {POPUP_MESSAGE_TYPE, PopUpMessage as default};

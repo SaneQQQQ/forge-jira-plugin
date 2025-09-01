@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { invoke } from '@forge/bridge';
+import React, {useEffect, useState} from 'react';
+import PopUpMessage, {POPUP_MESSAGE_TYPE} from './components/PopUpMessage';
+import LoadingSpinner from './components/LoadingSpinner';
+import {invoke} from '@forge/bridge';
 import ForgeReconciler, {
     Box,
     Button,
@@ -20,15 +22,14 @@ import ForgeReconciler, {
     useForm,
     ValidMessage
 } from '@forge/react';
-import PopUpMessage, { popUpMessageType } from "./components/popUpMessage"
-import LoadingContent from "./components/loadingContent";
 
-const App = () => {
-    const {handleSubmit, register, getFieldId,
+const TokenSetup = () => {
+    const {handleSubmit,
+        register,
+        getFieldId,
         formState: {
             errors,
             touchedFields}} = useForm();
-
     const [token, setToken] = useState(null);
     const [popUpType, setPopUpMessageType] = useState(null);
     const [isSaved, setIsSaved] = useState(false);
@@ -36,28 +37,28 @@ const App = () => {
     const [isLoadingButton, setIsLoadingButton] = useState(false);
     const [isLoadingContent, setIsLoadingContent] = useState(true);
 
-    const isValidToken = async (token) => {
-        return await invoke('isValidToken', {token: token});
+    const validateToken = async (token) => {
+        return await invoke('validateToken', {token: token});
     };
 
     const saveToken = async (token) => {
         return await invoke('saveToken', {token: token});
     };
 
-    const getToken = async () => {
-        return await invoke('getToken');
+    const loadToken = async () => {
+        return await invoke('loadToken');
     };
 
-    const deleteToken = async () => {
-        return await invoke('deleteToken');
+    const removeToken = async () => {
+        return await invoke('removeToken');
     };
 
     const submitToken = async (data) => {
         setIsLoadingButton(true);
         setPopUpMessageType(null);
 
-        if (!await isValidToken(data.token)) {
-            setPopUpMessageType(popUpMessageType.ERROR);
+        if (!await validateToken(data.token)) {
+            setPopUpMessageType(POPUP_MESSAGE_TYPE.ERROR);
             setIsLoadingButton(false);
             return;
         }
@@ -66,7 +67,7 @@ const App = () => {
             setEditMode(false);
             setToken(data.token);
             setIsSaved(true);
-            setPopUpMessageType(popUpMessageType.SAVED);
+            setPopUpMessageType(POPUP_MESSAGE_TYPE.SAVED);
         }
 
         setIsLoadingButton(false);
@@ -78,29 +79,28 @@ const App = () => {
 
     const handleRemove = async () => {
         setIsLoadingButton(true);
-        await deleteToken();
+        await removeToken();
         setToken(null);
         setIsSaved(false);
         setEditMode(false);
-        setPopUpMessageType(popUpMessageType.REMOVED);
+        setPopUpMessageType(POPUP_MESSAGE_TYPE.REMOVED);
         setIsLoadingButton(false);
     };
 
     useEffect(() => {
         const populateToken = async () => {
-            const saved = await getToken();
+            const saved = await loadToken();
             if (saved) {
                 setToken(saved);
                 setIsSaved(true);
             }
-            setIsLoadingContent(false);
         };
-        populateToken();
+        populateToken().then(() => setIsLoadingContent(false));
     }, []);
 
     return (
         <>
-            <LoadingContent isLoading={isLoadingContent}></LoadingContent>
+            <LoadingSpinner isLoading={isLoadingContent}></LoadingSpinner>
             {!isLoadingContent && (
                 <Form onSubmit={handleSubmit(submitToken)}>
                     <FormHeader title="GitHub Personal Access Token">
@@ -181,6 +181,6 @@ const App = () => {
 
 ForgeReconciler.render(
     <React.StrictMode>
-        <App />
+        <TokenSetup />
     </React.StrictMode>
 );
