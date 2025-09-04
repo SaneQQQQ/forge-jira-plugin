@@ -85,7 +85,6 @@ export const approveGitHubPr = async ({payload}) => {
     }
 }
 
-
 const checkIfApproved = async (id, repoOwner, repoName) => {
     try {
         return await getAllReviews(id, repoOwner, repoName)

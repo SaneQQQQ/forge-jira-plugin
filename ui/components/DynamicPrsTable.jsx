@@ -1,11 +1,13 @@
 import React from 'react';
-import {DynamicTable, Text, Link, Lozenge, Button, Stack} from '@forge/react';
+import {DynamicTable, Text, Tooltip, Link, Lozenge, Button, Stack} from '@forge/react';
 import {invoke} from "@forge/bridge";
 
-const DynamicPRsTable = ({pullRequests, setPullRequests}) => {
+const DynamicPrsTable = ({pullRequests, setPullRequests}) => {
     if (!pullRequests || pullRequests.length === 0) {
         return <Text align="center">No pull requests found</Text>;
     }
+
+    const truncate = (str, maxLength = 25) => str.length > maxLength ? str.substring(0, maxLength) + "..." : str;
 
     const head = {
         cells: [
@@ -22,17 +24,21 @@ const DynamicPRsTable = ({pullRequests, setPullRequests}) => {
             {
                 key: `pullRequest-${index}`,
                 content: (
-                    <Link href={pr.url}>
-                        {pr.title}
-                    </Link>
+                    <Tooltip content={pr.title}>
+                        <Link href={pr.url} openNewTab={true}>
+                            {truncate(pr.title)}
+                        </Link>
+                    </Tooltip>
                 ),
             },
             {
                 key: `branch-${index}`,
                 content: (
-                    <Link href={pr.branchUrl}>
-                        {pr.branchName}
-                    </Link>
+                    <Tooltip content={pr.branchName}>
+                        <Link href={pr.branchUrl} openNewTab={true}>
+                            {truncate(pr.branchName)}
+                        </Link>
+                    </Tooltip>
                 ),
             },
             {
@@ -97,4 +103,4 @@ const DynamicPRsTable = ({pullRequests, setPullRequests}) => {
     );
 };
 
-export default DynamicPRsTable;
+export default DynamicPrsTable;

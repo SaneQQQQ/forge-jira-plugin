@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {invoke} from '@forge/bridge';
 import {Box, Button, Inline, Lozenge, Strong, useProductContext} from '@forge/react';
-import DynamicPRsTable from './DynamicPRsTable'
+import DynamicPrsTable from './DynamicPrsTable'
 
 const RepoExpand = ({repository}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +56,7 @@ const RepoExpand = ({repository}) => {
             </Button>
             {isOpen && (
                 <Box xcss={{marginTop: 'space.100'}}>
-                    <DynamicPRsTable pullRequests={pullRequests} setPullRequests={setPullRequests}></DynamicPRsTable>
+                    <DynamicPrsTable pullRequests={pullRequests} setPullRequests={setPullRequests}></DynamicPrsTable>
                 </Box>
             )}
         </Box>

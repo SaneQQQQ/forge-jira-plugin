@@ -1,30 +1,37 @@
 modules:
+  webtrigger:
+    - key: github-pr-merged-trigger
+      function: handle-github-pr-merged
+      response:
+        type: dynamic
   jira:adminPage:
-    - key: forge-jira-plugin-token-setup
-      resource: token-setup-resource
+    - key: plugin-admin-page
+      resource: admin-page-resource
       resolver:
         function: resolver
       render: native
       title: Forge Jira Plugin
-      description: Token Setup
-      label: Token Setup
+      description: Configure plugin settings
+      label: Admin Page
   jira:issueContext:
-    - key: forge-jira-plugin-issue-context
+    - key: plugin-issue-context
       resource: issue-context-resource
       resolver:
         function: resolver
       render: native
       title: Forge Jira Plugin
-      description: Issue Context
+      description: Issue context view
       label: Issue Context
   function:
+    - key: handle-github-pr-merged
+      handler: index.handleGithubPrMerged
     - key: resolver
       handler: index.resolvers
 resources:
-  - key: token-setup-resource
-    path: ui/TokenSetup.jsx
+  - key: admin-page-resource
+    path: ui/pages/AdminPage.jsx
   - key: issue-context-resource
-    path: ui/IssueContext.jsx
+    path: ui/pages/IssueContext.jsx
 app:
   runtime:
     name: nodejs22.x
@@ -33,6 +40,8 @@ app:
   id: ari:cloud:ecosystem::app/71a30bf9-219b-4c54-9963-10be5cbc4d59
 permissions:
   scopes:
+    - read:jira-work
+    - write:jira-work
     - storage:app
   external:
     fetch:

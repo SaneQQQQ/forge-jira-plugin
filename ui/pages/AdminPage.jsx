@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import PopUpMessage, {POPUP_MESSAGE_TYPE} from './components/PopUpMessage';
-import LoadingSpinner from './components/LoadingSpinner';
+import PopUpMessage, {POPUP_MESSAGE_TYPE} from '../components/PopUpMessage';
+import LoadingSpinner from '../components/LoadingSpinner';
 import {invoke} from '@forge/bridge';
 import ForgeReconciler, {
     Box,
@@ -23,7 +23,7 @@ import ForgeReconciler, {
     ValidMessage
 } from '@forge/react';
 
-const TokenSetup = () => {
+const AdminPage = () => {
     const {handleSubmit,
         register,
         getFieldId,
@@ -106,7 +106,7 @@ const TokenSetup = () => {
                     <FormHeader title="GitHub Personal Access Token">
                         <Text>
                             Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
-                            <Link href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
+                            <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
                                 Managing your personal access tokens.
                             </Link>
                         </Text>
@@ -181,6 +181,6 @@ const TokenSetup = () => {
 
 ForgeReconciler.render(
     <React.StrictMode>
-        <TokenSetup />
+        <AdminPage />
     </React.StrictMode>
 );
