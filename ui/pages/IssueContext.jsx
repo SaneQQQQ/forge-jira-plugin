@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import LoadingSpinner from "./components/LoadingSpinner";
-import RepoExpand from "./components/RepoExpand";
+import LoadingSpinner from "../components/LoadingSpinner";
+import RepoExpand from "../components/RepoExpand";
 import {invoke} from '@forge/bridge';
 import ForgeReconciler, {EmptyState, Stack} from '@forge/react'
 
