@@ -10,6 +10,7 @@ modules:
       resolver:
         function: resolver
       render: native
+      icon: resource:icons;githubSmallIcon.png
       title: Forge Jira Plugin
       description: Configure plugin settings
       label: Admin Page
@@ -32,6 +33,8 @@ resources:
     path: ui/pages/AdminPage.jsx
   - key: issue-context-resource
     path: ui/pages/IssueContext.jsx
+  - key: icons
+    path: static/icons
 app:
   runtime:
     name: nodejs22.x

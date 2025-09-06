@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {invoke} from '@forge/bridge';
-import {Box, Button, Inline, Lozenge, Strong, useProductContext} from '@forge/react';
 import DynamicPrsTable from './DynamicPrsTable'
+import {Box, Button, Inline, Lozenge, Strong, useProductContext} from '@forge/react';
 
 const RepoExpand = ({repository}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,22 +42,15 @@ const RepoExpand = ({repository}) => {
             >
                 <Inline spread="space-between">
                     <Strong>{repository.name}</Strong>
-                    {repository.language && (
+                    <Box>
                         <Lozenge appearance="success" isBold>
                             {repository.language}
                         </Lozenge>
-                    )}
-                    {!repository.language && (
-                        <Lozenge appearance="moved" isBold>
-                            unknown
-                        </Lozenge>
-                    )}
+                    </Box>
                 </Inline>
             </Button>
             {isOpen && (
-                <Box xcss={{marginTop: 'space.100'}}>
-                    <DynamicPrsTable pullRequests={pullRequests} setPullRequests={setPullRequests}></DynamicPrsTable>
-                </Box>
+                <DynamicPrsTable pullRequests={pullRequests} setPullRequests={setPullRequests}></DynamicPrsTable>
             )}
         </Box>
     );
