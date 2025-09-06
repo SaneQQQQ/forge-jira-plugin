@@ -8,7 +8,7 @@ export const prepareOctokit = async (token) => {
         return new Octokit({
             auth: resolvedToken,
             request: {
-                headers: { 'X-GitHub-Api-Version': GITHUB_API_VERSION },
+                headers: {'X-GitHub-Api-Version': GITHUB_API_VERSION},
             },
         });
     } catch (err) {

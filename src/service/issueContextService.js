@@ -8,7 +8,7 @@ export const getAllGitHubRepos = async () => {
                     name,
                     isPrivate,
                     url: html_url,
-                    language,
+                    language: language ?? 'Unknown',
                     owner: owner.login}))
         );
     } catch (err) {
@@ -44,10 +44,19 @@ export const getAllGitHubPRsForRepoByIssueKey = async ({payload}) => {
                     branchUrl: `https://github.com/${repoOwner}/${repoName}/tree/${head.ref}`}))
                 .filter(pr => pr.branchName.includes(issueKey) || pr.title.includes(issueKey));
 
-        return await Promise.all(prs.map(async (pr) => ({
+        return await Promise.all(
+            prs.map(async (pr) => {
+                const reviewState = await getLatestReviewState(
+                    pr.id,
+                    pr.repository.owner,
+                    pr.repository.name
+                );
+
+                return {
                     ...pr,
-                    reviewState: await checkIfApproved(pr.id, pr.repository.owner, pr.repository.name)
-        })));
+                    state: normalizePrState(pr.merged, pr.state, reviewState),
+                };
+            }));
     } catch (err) {
         const errorMessage = `Failed to fetch pull requests for ${repoOwner}/${repoName} repository: ${err.message}`;
         console.error(errorMessage);
@@ -85,7 +94,7 @@ export const approveGitHubPr = async ({payload}) => {
     }
 }
 
-const checkIfApproved = async (id, repoOwner, repoName) => {
+const getLatestReviewState = async (id, repoOwner, repoName) => {
     try {
         return await getAllReviews(id, repoOwner, repoName)
             .then(res => res.data?.filter(review =>
@@ -97,3 +106,9 @@ const checkIfApproved = async (id, repoOwner, repoName) => {
         throw new Error(errorMessage);
     }
 }
+
+const normalizePrState = (merged, prState, reviewState) => {
+    if (prState === 'closed') return 'closed';
+    if (reviewState === 'APPROVED') return 'approved';
+    return 'open';
+};
