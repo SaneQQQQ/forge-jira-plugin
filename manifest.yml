@@ -1,46 +1,57 @@
+# App Modules
 modules:
+  # Web trigger to handle GitHub PR merged events
   webtrigger:
     - key: github-pr-merged-trigger
       function: handle-github-pr-merged
       response:
         type: dynamic
+  # Admin page for configuring the app
   jira:adminPage:
     - key: plugin-admin-page
       resource: admin-page-resource
       resolver:
         function: resolver
       render: native
-      icon: resource:icons;githubSmallIcon.png
+      icon: resource:icons;githubMediumIcon.png
       title: Forge Jira Plugin
-      description: Configure plugin settings
-      label: Admin Page
+      description: Configure your GitHub integration settings
+      label: Admin Settings
+  # Issue context panel to display GitHub-related info inside Jira issues
   jira:issueContext:
     - key: plugin-issue-context
       resource: issue-context-resource
       resolver:
         function: resolver
       render: native
+      icon: resource:icons;githubSmallIcon.png
       title: Forge Jira Plugin
-      description: Issue context view
+      description: View GitHub data for this issue
       label: Issue Context
+  # Backend functions
   function:
     - key: handle-github-pr-merged
       handler: index.handleGithubPrMerged
     - key: resolver
       handler: index.resolvers
+# App Resources
 resources:
+  # React frontend pages
   - key: admin-page-resource
     path: ui/pages/AdminPage.jsx
   - key: issue-context-resource
     path: ui/pages/IssueContext.jsx
+  # Shared icon resources
   - key: icons
     path: static/icons
+# App Settings
 app:
   runtime:
     name: nodejs22.x
     memoryMB: 256
     architecture: arm64
   id: ari:cloud:ecosystem::app/71a30bf9-219b-4c54-9963-10be5cbc4d59
+# App Permissions
 permissions:
   scopes:
     - read:jira-work

@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import LoadingSpinner from "../components/LoadingSpinner";
 import RepoExpand from "../components/RepoExpand";
 import {invoke} from '@forge/bridge';
-import ForgeReconciler, {EmptyState, Stack} from '@forge/react'
+import ForgeReconciler, {Stack} from '@forge/react'
+import NoTokenEmptyState from "../components/NoTokenEmptyState";
 
 const IssueContext = () => {
     const [repositories, setRepositories] = useState([]);
@@ -40,9 +41,7 @@ const IssueContext = () => {
                 {repositories && repositories.map(repository => (
                     <RepoExpand repository={repository}></RepoExpand>
                 ))}
-                {!isTokenSet && (
-                    <EmptyState header="Please set your GitHub PAT token" description="Go to Settings / Apps / Forge Jira Plugin to set your GitHub PAT token"/>
-                )}
+                <NoTokenEmptyState isTokenSet={isTokenSet}/>
             </Stack>
         </>
     );
