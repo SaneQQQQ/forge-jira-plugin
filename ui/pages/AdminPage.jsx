@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PopUpMessage, {POPUP_MESSAGE_TYPE} from '../components/PopUpMessage';
 import LoadingSpinner from '../components/LoadingSpinner';
+import FeedbackConsole from "../components/FeedbackConsole";
 import {invoke} from '@forge/bridge';
 import ForgeReconciler, {
     Box,
@@ -100,81 +101,83 @@ const AdminPage = () => {
 
     return (
         <>
-            <LoadingSpinner isLoading={isLoadingContent}></LoadingSpinner>
-            {!isLoadingContent && (
-                <Form onSubmit={handleSubmit(submitToken)}>
-                    <FormHeader title="GitHub Personal Access Token">
-                        <Text>
-                            Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
-                            <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
-                                Managing your personal access tokens.
-                            </Link>
-                        </Text>
-                    </FormHeader>
-                    <FormSection>
-                        <PopUpMessage type={popUpType}></PopUpMessage>
-                        <Stack space="space.200">
-                            {(editMode || !isSaved) && (
-                                <Box>
-                                    <Label labelFor={getFieldId("token")}>
-                                        Personal Access Token
-                                        <RequiredAsterisk />
-                                    </Label>
-                                    <Textfield defaultValue={token} placeholder="Place your token here" {...register("token", {
-                                        required: true,
-                                        pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
-                                    {errors["token"] && (
-                                        <ErrorMessage>
-                                            Invalid token format. Please check and try again.
-                                        </ErrorMessage>
-                                    )}
-                                    {!touchedFields["token"] && !errors["token"] && (
-                                        <HelperMessage>
-                                            Use a fine-grained or classic PAT generated in your GitHub account settings.
-                                        </HelperMessage>
-                                    )}
-                                    {touchedFields["token"] && !errors["token"] && (
-                                        <ValidMessage>
-                                            Looks good! Valid token format.
-                                        </ValidMessage>
-                                    )}
-                                </Box>
-                            )}
-                            {!editMode && isSaved && (
-                                <Box>
-                                    <Label labelFor="savedToken">
-                                        Personal Access Token
-                                    </Label>
-                                    <Textfield value={token} isDisabled />
-                                </Box>
-                            )}
-                        </Stack>
-                    </FormSection>
-                    {(editMode || !isSaved) && (
-                        <FormFooter>
-                            <LoadingButton isLoading={isLoadingButton} appearance="primary" type="submit">
-                                Save Token
-                            </LoadingButton>
-                        </FormFooter>
-                    )}
-                    {!editMode && isSaved && (
-                        <FormFooter>
-                            <Inline space="space.150">
-                                <Box>
-                                    <Button shouldFitContainer onClick={handleEdit}>
-                                        Edit
-                                    </Button>
-                                </Box>
-                                <Box>
-                                    <LoadingButton isLoading={isLoadingButton} shouldFitContainer onClick={handleRemove} appearance="danger">
-                                        Remove
-                                    </LoadingButton>
-                                </Box>
-                            </Inline>
-                        </FormFooter>
-                    )}
-                </Form>
-            )}
+            <LoadingSpinner isLoading={isLoadingContent}>
+                {!isLoadingContent && (
+                    <Form onSubmit={handleSubmit(submitToken)}>
+                        <FormHeader title="GitHub Personal Access Token">
+                            <Text>
+                                Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
+                                <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
+                                    Managing your personal access tokens.
+                                </Link>
+                            </Text>
+                        </FormHeader>
+                        <FormSection>
+                            <PopUpMessage type={popUpType}></PopUpMessage>
+                            <Stack space="space.200">
+                                {(editMode || !isSaved) && (
+                                    <Box>
+                                        <Label labelFor={getFieldId("token")}>
+                                            Personal Access Token
+                                            <RequiredAsterisk />
+                                        </Label>
+                                        <Textfield defaultValue={token} type='password' placeholder="Place your token here" {...register("token", {
+                                            required: true,
+                                            pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
+                                        {errors["token"] && (
+                                            <ErrorMessage>
+                                                Invalid token format. Please check and try again.
+                                            </ErrorMessage>
+                                        )}
+                                        {!touchedFields["token"] && !errors["token"] && (
+                                            <HelperMessage>
+                                                Use a fine-grained or classic PAT generated in your GitHub account settings.
+                                            </HelperMessage>
+                                        )}
+                                        {touchedFields["token"] && !errors["token"] && (
+                                            <ValidMessage>
+                                                Looks good! Valid token format.
+                                            </ValidMessage>
+                                        )}
+                                    </Box>
+                                )}
+                                {!editMode && isSaved && (
+                                    <Box>
+                                        <Label labelFor="savedToken">
+                                            Personal Access Token
+                                        </Label>
+                                        <Textfield value={token} type='password' isDisabled />
+                                    </Box>
+                                )}
+                            </Stack>
+                        </FormSection>
+                        {(editMode || !isSaved) && (
+                            <FormFooter>
+                                <LoadingButton isLoading={isLoadingButton} appearance="primary" type="submit">
+                                    Save Token
+                                </LoadingButton>
+                            </FormFooter>
+                        )}
+                        {!editMode && isSaved && (
+                            <FormFooter>
+                                <Inline space="space.150">
+                                    <Box>
+                                        <Button shouldFitContainer onClick={handleEdit}>
+                                            Edit
+                                        </Button>
+                                    </Box>
+                                    <Box>
+                                        <LoadingButton isLoading={isLoadingButton} shouldFitContainer onClick={handleRemove} appearance="danger">
+                                            Remove
+                                        </LoadingButton>
+                                    </Box>
+                                </Inline>
+                            </FormFooter>
+                        )}
+                    </Form>
+                )}
+                <FeedbackConsole/>
+            </LoadingSpinner>
         </>
     );
 };

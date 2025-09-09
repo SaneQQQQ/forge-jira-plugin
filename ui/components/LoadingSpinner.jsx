@@ -1,9 +1,9 @@
 import React from 'react';
 import {Inline, Spinner, Box} from '@forge/react';
 
-const LoadingSpinner = ({isLoading}) => {
+const LoadingSpinner = ({children, isLoading}) => {
     if (!isLoading) {
-        return null;
+        return children;
     }
 
     return (
