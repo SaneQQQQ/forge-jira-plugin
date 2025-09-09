@@ -36,13 +36,14 @@ const IssueContext = () => {
 
     return (
         <>
-            <LoadingSpinner isLoading={isLoading}></LoadingSpinner>
-            <Stack space="space.100">
-                {repositories && repositories.map(repository => (
-                    <RepoExpand repository={repository}></RepoExpand>
-                ))}
-                <NoTokenEmptyState isTokenSet={isTokenSet}/>
-            </Stack>
+            <LoadingSpinner isLoading={isLoading}>
+                <Stack space="space.100">
+                    {repositories && repositories.map(repository => (
+                        <RepoExpand repository={repository}></RepoExpand>
+                    ))}
+                </Stack>
+            </LoadingSpinner>
+            <NoTokenEmptyState isTokenSet={isTokenSet}/>
         </>
     );
 };

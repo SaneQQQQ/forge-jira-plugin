@@ -2,15 +2,26 @@ import {Octokit} from 'octokit';
 import {getSecret} from './kvsSecretsClient';
 import {GITHUB_API_VERSION, GITHUB_API_TOKEN_KEY} from '../common/constants';
 
+let cachedOctokit = null;
+let cachedToken = null;
+
 export const prepareOctokit = async (token) => {
     try {
         const resolvedToken = token ?? await getSecret(GITHUB_API_TOKEN_KEY);
-        return new Octokit({
+
+        if (cachedOctokit && cachedToken === resolvedToken) {
+            return cachedOctokit;
+        }
+
+        cachedOctokit = new Octokit({
             auth: resolvedToken,
             request: {
                 headers: {'X-GitHub-Api-Version': GITHUB_API_VERSION},
             },
         });
+
+        cachedToken = resolvedToken;
+        return cachedOctokit;
     } catch (err) {
         const message = `Failed to prepare GitHub API client: ${err.message}`;
         console.error(message);

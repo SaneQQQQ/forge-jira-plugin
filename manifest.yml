@@ -8,26 +8,26 @@ modules:
         type: dynamic
   # Admin page for configuring the app
   jira:adminPage:
-    - key: plugin-admin-page
+    - key: admin-page-module
       resource: admin-page-resource
       resolver:
         function: resolver
       render: native
       icon: resource:icons;githubMediumIcon.png
-      title: Forge Jira Plugin
-      description: Configure your GitHub integration settings
-      label: Admin Settings
+      title: GitHub Integration
+      description: Configure your GitHub PAT token
+      label: GitHub Integration Settings
   # Issue context panel to display GitHub-related info inside Jira issues
   jira:issueContext:
-    - key: plugin-issue-context
+    - key: issue-context-module
       resource: issue-context-resource
       resolver:
         function: resolver
       render: native
       icon: resource:icons;githubSmallIcon.png
-      title: Forge Jira Plugin
-      description: View GitHub data for this issue
-      label: Issue Context
+      title: GitHub Integration
+      description: View related GitHub Pull Requests
+      label: Pull Requests
   # Backend functions
   function:
     - key: handle-github-pr-merged
