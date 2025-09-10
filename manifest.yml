@@ -60,4 +60,10 @@ permissions:
   external:
     fetch:
       backend:
+          # GitHub API
         - address: api.github.com
+          # Email delivery service
+        - address: api.mailgun.net
+    images:
+        # Images source
+      - address: octodex.github.com

@@ -1,0 +1,8 @@
+📌 New Feedback Submission
+
+Feedback type: {{feedbackType}}
+Feedback text:
+"{{feedbackText}}"
+
+Can contact me: {{canContact}}
+Research participation: {{researchParticipation}}

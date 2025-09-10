@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, SectionMessage} from '@forge/react';
+import {SectionMessage, Text} from '@forge/react';
 
 const POPUP_MESSAGE_TYPE = Object.freeze({
     ERROR: 'error',
@@ -30,11 +30,11 @@ const PopUpMessage = ({type}) => {
     }
 
     return (
-        <Box paddingBlockEnd="space.200">
-            <SectionMessage appearance={message.appearance}>
+        <SectionMessage appearance={message.appearance}>
+            <Text>
                 {message.text}
-            </SectionMessage>
-        </Box>
+            </Text>
+        </SectionMessage>
     );
 };
 
