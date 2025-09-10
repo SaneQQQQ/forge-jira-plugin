@@ -8,10 +8,11 @@ import ForgeReconciler, {
     Button,
     ErrorMessage,
     Form,
-    FormFooter,
     FormHeader,
     FormSection,
+    Heading,
     HelperMessage,
+    Image,
     Inline,
     Label,
     Link,
@@ -20,6 +21,7 @@ import ForgeReconciler, {
     Stack,
     Text,
     Textfield,
+    Toggle,
     useForm,
     ValidMessage
 } from '@forge/react';
@@ -102,81 +104,119 @@ const AdminPage = () => {
     return (
         <>
             <LoadingSpinner isLoading={isLoadingContent}>
-                {!isLoadingContent && (
+                <Box paddingInline='space.600'>
                     <Form onSubmit={handleSubmit(submitToken)}>
-                        <FormHeader title="GitHub Personal Access Token">
-                            <Text>
-                                Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
-                                <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
-                                    Managing your personal access tokens.
-                                </Link>
-                            </Text>
+                        <FormHeader>
+                            <Stack alignInline='center' space='space.150'>
+                                <Box>
+                                    <Heading size='large'>
+                                        GitHub Personal Access Token
+                                    </Heading>
+                                </Box>
+                                <Box>
+                                    <Text>
+                                        Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
+                                        <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
+                                            Managing your personal access tokens.
+                                        </Link>
+                                    </Text>
+                                </Box>
+                                <Box>
+                                    <Image src='https://octodex.github.com/images/steroidtocat.png' size='small'/>
+                                </Box>
+                            </Stack>
                         </FormHeader>
                         <FormSection>
-                            <PopUpMessage type={popUpType}></PopUpMessage>
-                            <Stack space="space.200">
+                            <Stack grow="fill" space='space.150'>
+                                <Inline alignInline='center'>
+                                    <Box paddingInline='space.1000'>
+                                        <PopUpMessage type={popUpType}></PopUpMessage>
+                                    </Box>
+                                </Inline>
                                 {(editMode || !isSaved) && (
-                                    <Box>
-                                        <Label labelFor={getFieldId("token")}>
-                                            Personal Access Token
-                                            <RequiredAsterisk />
-                                        </Label>
-                                        <Textfield defaultValue={token} type='password' placeholder="Place your token here" {...register("token", {
-                                            required: true,
-                                            pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
-                                        {errors["token"] && (
-                                            <ErrorMessage>
-                                                Invalid token format. Please check and try again.
-                                            </ErrorMessage>
-                                        )}
-                                        {!touchedFields["token"] && !errors["token"] && (
-                                            <HelperMessage>
-                                                Use a fine-grained or classic PAT generated in your GitHub account settings.
-                                            </HelperMessage>
-                                        )}
-                                        {touchedFields["token"] && !errors["token"] && (
-                                            <ValidMessage>
-                                                Looks good! Valid token format.
-                                            </ValidMessage>
-                                        )}
+                                    <Box paddingInline='space.1000'>
+                                        <Box paddingInline='space.1000'>
+                                            <Box paddingInline='space.1000'>
+                                            <Label labelFor={getFieldId("token")}>
+                                                Personal Access Token
+                                                <RequiredAsterisk />
+                                            </Label>
+                                            <Textfield defaultValue={token} type='password' placeholder="Place your token here" {...register("token", {
+                                                required: true,
+                                                pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
+                                            {errors["token"] && (
+                                                <ErrorMessage>
+                                                    Invalid token format. Please check and try again.
+                                                </ErrorMessage>
+                                            )}
+                                            {!touchedFields["token"] && !errors["token"] && (
+                                                <HelperMessage>
+                                                    Use a fine-grained or classic PAT generated in your GitHub account settings.
+                                                </HelperMessage>
+                                            )}
+                                            {touchedFields["token"] && !errors["token"] && (
+                                                <ValidMessage>
+                                                    Looks good! Valid token format.
+                                                </ValidMessage>
+                                            )}
+                                            </Box>
+                                        </Box>
                                     </Box>
                                 )}
                                 {!editMode && isSaved && (
-                                    <Box>
-                                        <Label labelFor="savedToken">
-                                            Personal Access Token
-                                        </Label>
-                                        <Textfield value={token} type='password' isDisabled />
+                                    <Box paddingInline='space.1000'>
+                                        <Box paddingInline='space.1000'>
+                                            <Box paddingInline='space.1000'>
+                                                <Label labelFor="savedToken">
+                                                    Personal Access Token
+                                                </Label>
+                                                <Textfield value={token} type='password' isDisabled/>
+                                            </Box>
+                                        </Box>
                                     </Box>
                                 )}
                             </Stack>
                         </FormSection>
                         {(editMode || !isSaved) && (
-                            <FormFooter>
-                                <LoadingButton isLoading={isLoadingButton} appearance="primary" type="submit">
-                                    Save Token
-                                </LoadingButton>
-                            </FormFooter>
+                            <Box paddingBlockStart='space.250'>
+                                <Inline alignInline='center'>
+                                    <LoadingButton isLoading={isLoadingButton} appearance="primary" type="submit">
+                                        <Box paddingInline='space.1000'>
+                                            Save Token
+                                        </Box>
+                                    </LoadingButton>
+                                </Inline>
+                            </Box>
                         )}
                         {!editMode && isSaved && (
-                            <FormFooter>
-                                <Inline space="space.150">
-                                    <Box>
-                                        <Button shouldFitContainer onClick={handleEdit}>
+                            <Box paddingBlockStart='space.400'>
+                                <Inline alignInline='center' space='space.300'>
+                                    <Button onClick={handleEdit}>
+                                        <Box paddingInline='space.1000'>
                                             Edit
-                                        </Button>
-                                    </Box>
-                                    <Box>
-                                        <LoadingButton isLoading={isLoadingButton} shouldFitContainer onClick={handleRemove} appearance="danger">
+                                        </Box>
+                                    </Button>
+                                    <LoadingButton isLoading={isLoadingButton} onClick={handleRemove} appearance="danger">
+                                        <Box paddingInline='space.1000'>
                                             Remove
-                                        </LoadingButton>
-                                    </Box>
+                                        </Box>
+                                    </LoadingButton>
                                 </Inline>
-                            </FormFooter>
+                            </Box>
                         )}
+                        {/* TODO: implement repository fetching based on this property */}
+                        <Box paddingBlockStart='space.250'>
+                            <Inline alignInline='center' alignBlock='center'>
+                                <Toggle id='toggle'></Toggle>
+                                <Box>
+                                    <Label labelFor='toggle'>Show private repositories</Label>
+                                </Box>
+                            </Inline>
+                        </Box>
+                        {/* TODO: implement repository fetching based on this property */}
                     </Form>
-                )}
-                <FeedbackConsole/>
+                    <FeedbackConsole/>
+                </Box>
             </LoadingSpinner>
         </>
     );

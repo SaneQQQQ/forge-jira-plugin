@@ -3,7 +3,7 @@ import {invoke} from "@forge/bridge";
 import {
     Box,
     Button,
-    CheckboxGroup,
+    Checkbox,
     HelperMessage,
     Icon,
     Inline,
@@ -27,14 +27,16 @@ const FeedbackConsole = ({}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [feedbackText, setFeedbackText] = useState("");
-    const [checkedValues, setCheckedValues] = useState([]);
+    const [canContact, setCanContact] = useState(false);
+    const [researchParticipation, setResearchParticipation] = useState(false);
 
     const openModal = () => setIsOpen(true);
     const closeModal = () => {
         setIsOpen(false);
         setSelectedOption(null);
         setFeedbackText("");
-        setCheckedValues([]);
+        setCanContact(false);
+        setResearchParticipation(false);
     };
 
     const pressableStyles = xcss({
@@ -55,12 +57,6 @@ const FeedbackConsole = ({}) => {
         {label: "Suggest an improvement", value: "suggestion"},
     ];
 
-    const checkboxOptions = [
-        {label: 'Yes, Atlassian teams can contact me to learn about my experiences to improve Atlassian products and services.'
-            , value: "policy"},
-        {label: "I'd like to participate in product research", value: "research"},
-    ];
-
     const getTextAreaLabel = () => {
         switch (selectedOption.value) {
             case "ask":
@@ -78,38 +74,41 @@ const FeedbackConsole = ({}) => {
 
     const sendFeedbackAction = async () => {
         const feedback = {
-            feedbackOption: selectedOption.value,
+            feedbackType: selectedOption.value,
             feedbackText: feedbackText,
-            checkedValues: checkedValues,
+            canContact: canContact,
+            researchParticipation: researchParticipation,
         }
         await invoke('sendFeedback', {feedback});
     };
 
     return (
         <>
-            <Stack>
-                <Text align='center' color='color.text.subtlest'>
-                    Any issues with your GitHub Integration?
-                </Text>
-                <Inline alignInline='center'>
-                    <Pressable
-                        paddingInline='space.150'
-                        paddingBlock='space.050'
-                        onClick={openModal}
-                        backgroundColor="color.background.neutral.subtle"
-                        xcss={pressableStyles}
-                    >
-                        <Inline alignInline='center'>
-                            <Icon label='feedback' glyph='feedback'/>
-                            <Box paddingBlockStart='space.025'>
-                                <Text align='center' color='color.text.subtle' weight='medium'>
-                                    Give feedback
-                                </Text>
-                            </Box>
-                        </Inline>
-                    </Pressable>
-                </Inline>
-            </Stack>
+            <Box alignInline='center' padding='space.250'>
+                <Stack>
+                    <Text align='center' color='color.text.subtlest'>
+                        Any issues with your GitHub Integration?
+                    </Text>
+                    <Inline alignInline='center'>
+                        <Pressable
+                            paddingInline='space.150'
+                            paddingBlock='space.050'
+                            onClick={openModal}
+                            backgroundColor="color.background.neutral.subtle"
+                            xcss={pressableStyles}
+                        >
+                            <Inline alignInline='center'>
+                                <Icon label='feedback' glyph='feedback'/>
+                                <Box paddingBlockStart='space.025'>
+                                    <Text align='center' color='color.text.subtle' weight='medium'>
+                                        Give feedback
+                                    </Text>
+                                </Box>
+                            </Inline>
+                        </Pressable>
+                    </Inline>
+                </Stack>
+            </Box>
 
             <ModalTransition>
                 {isOpen && (
@@ -146,12 +145,18 @@ const FeedbackConsole = ({}) => {
                                             onChange={(e) => setFeedbackText(e.target.value)}
                                             placeholder='Type here...'
                                         />
-                                        <CheckboxGroup
-                                            name=''
-                                            options={checkboxOptions}
-                                            value={checkedValues}
-                                            onChange={(values) => setCheckedValues(values)}
-                                        />
+                                        <Checkbox
+                                            value='research'
+                                            label="I'd like to participate in product research."
+                                            isChecked={researchParticipation}
+                                            onChange={() => setResearchParticipation(!researchParticipation)}>
+                                        </Checkbox>
+                                        <Checkbox
+                                            value='policy'
+                                            label='Yes, Atlassian teams can contact me to learn about my experiences to improve Atlassian products and services.'
+                                            isChecked={canContact}
+                                            onChange={() => setCanContact(!canContact)}>
+                                        </Checkbox>
                                     </Stack>
                                 </Box>
                             )}
