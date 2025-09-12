@@ -54,6 +54,7 @@ app:
 # App Permissions
 permissions:
   scopes:
+    - read:jira-user
     - read:jira-work
     - write:jira-work
     - storage:app
@@ -63,7 +64,7 @@ permissions:
           # GitHub API
         - address: api.github.com
           # Email delivery service
-        - address: api.mailgun.net
+        - address: email.eu-north-1.amazonaws.com
     images:
         # Images source
       - address: octodex.github.com
