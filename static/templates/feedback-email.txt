@@ -6,3 +6,7 @@ Feedback text:
 
 Can contact me: {{canContact}}
 Research participation: {{researchParticipation}}
+
+User Information:
+- Name: {{userName}}
+- Email: {{userEmail}}

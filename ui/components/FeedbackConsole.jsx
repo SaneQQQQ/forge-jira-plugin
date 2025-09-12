@@ -8,6 +8,7 @@ import {
     Icon,
     Inline,
     Label,
+    LoadingButton,
     Modal,
     ModalBody,
     ModalFooter,
@@ -25,6 +26,7 @@ import {
 
 const FeedbackConsole = ({}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [feedbackText, setFeedbackText] = useState("");
     const [canContact, setCanContact] = useState(false);
@@ -33,6 +35,7 @@ const FeedbackConsole = ({}) => {
     const openModal = () => setIsOpen(true);
     const closeModal = () => {
         setIsOpen(false);
+        setIsLoading(false);
         setSelectedOption(null);
         setFeedbackText("");
         setCanContact(false);
@@ -80,6 +83,13 @@ const FeedbackConsole = ({}) => {
             researchParticipation: researchParticipation,
         }
         await invoke('sendFeedback', {feedback});
+    };
+
+    const handleSendFeedback = async () => {
+        setIsLoading(true);
+        await sendFeedbackAction();
+        setIsLoading(false);
+        closeModal();
     };
 
     return (
@@ -144,19 +154,24 @@ const FeedbackConsole = ({}) => {
                                             value={feedbackText}
                                             onChange={(e) => setFeedbackText(e.target.value)}
                                             placeholder='Type here...'
+                                            spellCheck
                                         />
-                                        <Checkbox
-                                            value='research'
-                                            label="I'd like to participate in product research."
-                                            isChecked={researchParticipation}
-                                            onChange={() => setResearchParticipation(!researchParticipation)}>
-                                        </Checkbox>
-                                        <Checkbox
-                                            value='policy'
-                                            label='Yes, Atlassian teams can contact me to learn about my experiences to improve Atlassian products and services.'
-                                            isChecked={canContact}
-                                            onChange={() => setCanContact(!canContact)}>
-                                        </Checkbox>
+                                        <Box>
+                                            <Stack space='space.050'>
+                                                <Checkbox
+                                                    value='research'
+                                                    label="I'd like to participate in product research."
+                                                    isChecked={researchParticipation}
+                                                    onChange={() => setResearchParticipation(!researchParticipation)}>
+                                                </Checkbox>
+                                                <Checkbox
+                                                    value='policy'
+                                                    label='Yes, Atlassian teams can contact me to learn about my experiences to improve Atlassian products and services.'
+                                                    isChecked={canContact}
+                                                    onChange={() => setCanContact(!canContact)}>
+                                                </Checkbox>
+                                            </Stack>
+                                        </Box>
                                     </Stack>
                                 </Box>
                             )}
@@ -165,16 +180,14 @@ const FeedbackConsole = ({}) => {
                             <Button appearance='subtle' onClick={closeModal}>
                                 Cancel
                             </Button>
-                            <Button
+                            <LoadingButton
+                                isLoading={isLoading}
                                 appearance='primary'
-                                onClick={async () => {
-                                    await sendFeedbackAction();
-                                    closeModal();
-                                }}
+                                onClick={handleSendFeedback}
                                 isDisabled={!selectedOption || feedbackText.trim() === ''}
                             >
                                 Send Feedback
-                            </Button>
+                            </LoadingButton>
                         </ModalFooter>
                     </Modal>
                 )}
