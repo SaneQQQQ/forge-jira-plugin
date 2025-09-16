@@ -12,6 +12,7 @@
     }
   },
   "ui": {
+    "test": "cat",
     "pullRequestTable": {
       "emptyState": "No pull requests found",
       "head": {
