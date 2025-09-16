@@ -1,0 +1,34 @@
+name: Build Forge App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set execute permissions for scripts
+        run: |
+          chmod +x ./scripts/i18n-generate-diff.sh
+          chmod +x ./scripts/i18n-apply-diff.sh
+
+      - name: Run i18n-generate-diff script
+        run: ./scripts/i18n-generate-diff.sh
+
+      - name: Run i18n-apply-diff script
+        run: ./scripts/i18n-apply-diff.sh
