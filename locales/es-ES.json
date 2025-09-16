@@ -96,6 +96,7 @@
       "feedback": "Dar comentario",
       "cancel": "Cancelar",
       "settings": "Abrir configuración de la aplicación"
-    }
+    },
+    "test": "gato"
   }
 }

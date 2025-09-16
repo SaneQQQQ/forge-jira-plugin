@@ -96,6 +96,7 @@
       "feedback": "Feedback geben",
       "cancel": "Abbrechen",
       "settings": "App-Einstellungen öffnen"
-    }
+    },
+    "test": "katze"
   }
 }

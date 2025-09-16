@@ -96,6 +96,7 @@
       "feedback": "Donner un retour",
       "cancel": "Annuler",
       "settings": "Ouvrir les paramètres de l'application"
-    }
+    },
+    "test": "chat"
   }
 }
