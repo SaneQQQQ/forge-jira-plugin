@@ -58,4 +58,6 @@ for FILE in "$LOCALES_DIR"/*.json; do
   fi
 done
 
+rm -fv "$DIFF_FILE"
+
 echo "All translation files updated with translated missing keys from diff."
