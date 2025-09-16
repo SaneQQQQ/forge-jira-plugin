@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "Integrace s GitHubem",
+      "description": "Nakonfigurujte svůj GitHub PAT token",
+      "label": "Nastavení integrace s GitHubem"
+    },
+    "issueContext": {
+      "title": "Integrace s GitHubem",
+      "description": "Zobrazit související GitHub Pull Requesty",
+      "label": "Pull Requesty"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Nebyly nalezeny žádné Pull Requesty",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Větev",
+        "state": "Stav",
+        "actions": "Akce"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "uzavřený",
+          "approved": "schválený",
+          "open": "otevřený"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Položit otázku",
+        "comment": "Zanechat komentář",
+        "bug": "Nahlásit chybu",
+        "suggestion": "Navrhnout zlepšení"
+      },
+      "feedbackQuestions": {
+        "ask": "Co byste chtěli vědět?",
+        "comment": "Řekněte nám, co máte na mysli",
+        "bug": "Popište chybu nebo problém",
+        "suggestion": "Dejte nám vědět, co byste chtěli zlepšit",
+        "default": "Vaše zpětná vazba"
+      },
+      "feedbackConsole": {
+        "question": "Máte nějaké problémy s integrací GitHubu?"
+      },
+      "feedbackModal": {
+        "header": "Sdílejte své myšlenky",
+        "selectLabel": "Vyberte zpětnou vazbu",
+        "selectPlaceholder": "Vyberte...",
+        "selectHelperMessage": "Zvolte typ vaší zpětné vazby",
+        "feedbackPlaceholder": "Pište sem...",
+        "checkbox": {
+          "research": "Rád(a) bych se účastnil(a) výzkumu produktu.",
+          "policy": "Ano, týmy Atlassian mě mohou kontaktovat, aby se dozvěděly o mých zkušenostech a zlepšily produkty a služby Atlassian."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Načítání obsahu..."
+    },
+    "noTokenEmptyState": {
+      "header": "Je vyžadován GitHub token",
+      "description": "Zatím jste nenastavili GitHub Personal Access Token (PAT). Tento token je vyžadován, aby aplikace mohla přistupovat k vašim repozitářům."
+    },
+    "popUpMessage": {
+      "success": "Váš token byl úspěšně uložen.",
+      "warning": "Váš token byl úspěšně odstraněn.",
+      "error": "Váš token je neplatný nebo vypršel. Vygenerujte nový a zkuste to znovu."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Zadejte svůj GitHub Personal Access Token (PAT), abyste mohli pokračovat. Zjistěte, jak jej vytvořit: ",
+        "link": "Správa vašich osobních přístupových tokenů."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Zadejte token sem",
+        "errorMessage": "Neplatný formát tokenu. Zkontrolujte jej a zkuste to znovu.",
+        "helperMessage": "Použijte PAT s jemným nastavením nebo klasický PAT vytvořený v nastavení vašeho GitHub účtu.",
+        "validMessage": "Vypadá to dobře! Formát tokenu je platný."
+      },
+      "showPrivateRepo": "Zobrazit soukromé repozitáře"
+    },
+    "button": {
+      "submit": {
+        "token": "Uložit token",
+        "feedback": "Odeslat zpětnou vazbu"
+      },
+      "edit": "Upravit",
+      "remove": "Odstranit",
+      "approve": "Schválit",
+      "merge": "Sloučit",
+      "feedback": "Poskytnout zpětnou vazbu",
+      "cancel": "Zrušit",
+      "settings": "Otevřít nastavení aplikace"
+    }
+  }
+}

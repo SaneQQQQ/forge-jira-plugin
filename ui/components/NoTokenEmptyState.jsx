@@ -1,7 +1,8 @@
 import React from "react";
-import {EmptyState, LinkButton, useProductContext} from "@forge/react";
+import {EmptyState, LinkButton, useProductContext, useTranslation} from "@forge/react";
 
 const NoTokenEmptyState = ({isTokenSet}) => {
+    const {t} = useTranslation();
     const context = useProductContext();
 
     if (isTokenSet) {
@@ -15,10 +16,10 @@ const NoTokenEmptyState = ({isTokenSet}) => {
 
     return (
         <EmptyState
-            header="GitHub Token Required"
-            description="You haven't set a GitHub Personal Access Token (PAT) yet. This token is required for the app to access your repositories."
+            header={t('ui.noTokenEmptyState.header')}
+            description={t('ui.noTokenEmptyState.description')}
             primaryAction={<LinkButton href={`${context?.siteUrl}/jira/settings/apps/${parseLocalId(context?.localId)}`}
-                                       appearance="primary">Open App Settings</LinkButton>}
+                                       appearance="primary">{t('ui.button.settings')}</LinkButton>}
             width="narrow"
         />
     );

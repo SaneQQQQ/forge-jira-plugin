@@ -1,37 +1,38 @@
 import {Octokit} from 'octokit';
-import {getSecret} from './kvsSecretsClient';
+import {getSecret} from './kvsClient';
 import {GITHUB_API_VERSION, GITHUB_API_TOKEN_KEY} from '../common/constants';
+import {resolveRepoVisibility} from "../service/repoVisibilityService";
 
-let cachedOctokit = null;
-let cachedToken = null;
+let octokitCache = null;
+let tokenCache = null;
 
-export const prepareOctokit = async (token) => {
+const initOctokit = async (tokenOverride) => {
     try {
-        const resolvedToken = token ?? await getSecret(GITHUB_API_TOKEN_KEY);
+        const token = tokenOverride ?? await getSecret(GITHUB_API_TOKEN_KEY);
 
-        if (cachedOctokit && cachedToken === resolvedToken) {
-            return cachedOctokit;
+        if (octokitCache && tokenCache === token) {
+            return octokitCache;
         }
 
-        cachedOctokit = new Octokit({
-            auth: resolvedToken,
+        octokitCache = new Octokit({
+            auth: token,
             request: {
                 headers: {'X-GitHub-Api-Version': GITHUB_API_VERSION},
             },
         });
 
-        cachedToken = resolvedToken;
-        return cachedOctokit;
+        tokenCache = token;
+        return octokitCache;
     } catch (err) {
-        const message = `Failed to prepare GitHub API client: ${err.message}`;
+        const message = `Failed to initialize GitHub API client: ${error.message}`;
         console.error(message);
         throw new Error(message);
     }
 };
 
-const githubRequest = async (requestFn, errorMessage, token) => {
+const withGithubClient = async (requestFn, errorMessage, tokenOverride) => {
     try {
-        const octokit = await prepareOctokit(token);
+        const octokit = await initOctokit(tokenOverride);
         return await requestFn(octokit);
     } catch (err) {
         const message = `${errorMessage}: ${err.message}`;
@@ -40,46 +41,51 @@ const githubRequest = async (requestFn, errorMessage, token) => {
     }
 };
 
-export const getAllRepos = async (token) =>
-    await githubRequest(
-        async (octokit) => await octokit.request('GET /user/repos'),
+export const getAllRepos = async (tokenOverride) => {
+    const visibility = await resolveRepoVisibility();
+    return withGithubClient(
+        (octokit) => octokit.request('GET /user/repos', {visibility}),
         'Error fetching repositories',
-        token
+        tokenOverride
     );
+};
 
-export const getAllPrs = async (repoOwner, repoName) =>
-    await githubRequest(
-        async (octokit) => await octokit.request('GET /repos/{owner}/{repo}/pulls', {
+export const getAllRepoPullRequests = async (repoOwner, repoName) => {
+    return await withGithubClient(
+        (octokit) => octokit.request('GET /repos/{owner}/{repo}/pulls', {
             owner: repoOwner,
             repo: repoName,
             state: 'all',
         }),
         `Error fetching pull requests for ${repoOwner}/${repoName} repository`
     );
+};
 
-export const getAllReviews = async (id, repoOwner, repoName) =>
-    await githubRequest(
-        async (octokit) => await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
+export const getAllPullRequestReviews = async (id, repoOwner, repoName) => {
+    return await withGithubClient(
+        (octokit) => octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
             owner: repoOwner,
             repo: repoName,
             pull_number: id,
         }),
         `Error fetching reviews for pull request #${id} in ${repoOwner}/${repoName}`
     );
+};
 
-export const mergePr = async (id, repoOwner, repoName) =>
-    await githubRequest(
-        async (octokit) => await octokit.request('PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge', {
+export const mergePullRequest = async (id, repoOwner, repoName) => {
+    return await withGithubClient(
+        (octokit) => octokit.request('PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge', {
             owner: repoOwner,
             repo: repoName,
             pull_number: id,
         }),
         `Error merging pull request #${id} in ${repoOwner}/${repoName}`
     );
+};
 
-export const approvePr = async (id, repoOwner, repoName) =>
-    await githubRequest(
-        async (octokit) => await octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
+export const approvePullRequest = async (id, repoOwner, repoName) => {
+    return await withGithubClient(
+        (octokit) => octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
             owner: repoOwner,
             repo: repoName,
             pull_number: id,
@@ -87,3 +93,4 @@ export const approvePr = async (id, repoOwner, repoName) =>
         }),
         `Error approving pull request #${id} in ${repoOwner}/${repoName}`
     );
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import {Lozenge} from "@forge/react";
+import {Lozenge, useTranslation} from "@forge/react";
 
 const stateAppearanceMap = {
     open: "inprogress",
@@ -8,8 +8,10 @@ const stateAppearanceMap = {
 };
 
 const PrStateLozenge = ({state}) => {
+    const {t} = useTranslation();
+
     return (
-        <Lozenge appearance={stateAppearanceMap[state]}>{state}</Lozenge>
+        <Lozenge appearance={stateAppearanceMap[state]}>{t(`ui.pullRequestTable.pullRequest.state.${state}`)}</Lozenge>
     );
 };
 

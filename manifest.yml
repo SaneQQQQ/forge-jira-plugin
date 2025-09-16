@@ -14,9 +14,12 @@ modules:
         function: resolver
       render: native
       icon: resource:icons;githubMediumIcon.png
-      title: GitHub Integration
-      description: Configure your GitHub PAT token
-      label: GitHub Integration Settings
+      title:
+        i18n: app.adminPage.title
+      description:
+        i18n: app.adminPage.description
+      label:
+        i18n: app.adminPage.label
   # Issue context panel to display GitHub-related info inside Jira issues
   jira:issueContext:
     - key: issue-context-module
@@ -25,9 +28,12 @@ modules:
         function: resolver
       render: native
       icon: resource:icons;githubSmallIcon.png
-      title: GitHub Integration
-      description: View related GitHub Pull Requests
-      label: Pull Requests
+      title:
+        i18n: app.issueContext.title
+      description:
+        i18n: app.issueContext.description
+      label:
+        i18n: app.issueContext.label
   # Backend functions
   function:
     - key: handle-github-pr-merged
@@ -54,6 +60,7 @@ app:
 # App Permissions
 permissions:
   scopes:
+    - manage:jira-configuration
     - read:jira-user
     - read:jira-work
     - write:jira-work
@@ -61,10 +68,62 @@ permissions:
   external:
     fetch:
       backend:
-          # GitHub API
         - address: api.github.com
-          # Email delivery service
         - address: email.eu-north-1.amazonaws.com
     images:
-        # Images source
       - address: octodex.github.com
+# Translations
+translations:
+  resources:
+    - key: cs-CZ
+      path: locales/cs-CZ.json
+    - key: da-DK
+      path: locales/da-DK.json
+    - key: de-DE
+      path: locales/de-DE.json
+    - key: en-US
+      path: locales/en-US.json
+    - key: es-ES
+      path: locales/es-ES.json
+    - key: et-EE
+      path: locales/et-EE.json
+    - key: fi-FI
+      path: locales/fi-FI.json
+    - key: fr-FR
+      path: locales/fr-FR.json
+    - key: hu-HU
+      path: locales/hu-HU.json
+    - key: is-IS
+      path: locales/is-IS.json
+    - key: it-IT
+      path: locales/it-IT.json
+    - key: ja-JP
+      path: locales/ja-JP.json
+    - key: ko-KR
+      path: locales/ko-KR.json
+    - key: nl-NL
+      path: locales/nl-NL.json
+    - key: no-NO
+      path: locales/no-NO.json
+    - key: pl-PL
+      path: locales/pl-PL.json
+    - key: pt-BR
+      path: locales/pt-BR.json
+    - key: pt-PT
+      path: locales/pt-PT.json
+    - key: ro-RO
+      path: locales/ro-RO.json
+    - key: ru-RU
+      path: locales/ru-RU.json
+    - key: sk-SK
+      path: locales/sk-SK.json
+    - key: sv-SE
+      path: locales/sv-SE.json
+    - key: tr-TR
+      path: locales/tr-TR.json
+    - key: zh-CN
+      path: locales/zh-CN.json
+    - key: zh-TW
+      path: locales/zh-TW.json
+  fallback:
+    default: en-US

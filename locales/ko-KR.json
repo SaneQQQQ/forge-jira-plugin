@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub 통합",
+      "description": "GitHub PAT 토큰을 설정하세요",
+      "label": "GitHub 통합 설정"
+    },
+    "issueContext": {
+      "title": "GitHub 통합",
+      "description": "관련된 GitHub Pull Request 보기",
+      "label": "Pull Request"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Pull Request를 찾을 수 없습니다",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "브랜치",
+        "state": "상태",
+        "actions": "작업"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "닫힘",
+          "approved": "승인됨",
+          "open": "열림"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "질문하기",
+        "comment": "댓글 남기기",
+        "bug": "버그 신고",
+        "suggestion": "개선 제안"
+      },
+      "feedbackQuestions": {
+        "ask": "무엇을 알고 싶으신가요?",
+        "comment": "생각을 알려주세요",
+        "bug": "버그나 문제를 설명해 주세요",
+        "suggestion": "개선하고 싶은 점을 알려주세요",
+        "default": "피드백"
+      },
+      "feedbackConsole": {
+        "question": "GitHub 통합에 문제가 있으신가요?"
+      },
+      "feedbackModal": {
+        "header": "생각을 공유해주세요",
+        "selectLabel": "피드백 선택",
+        "selectPlaceholder": "선택...",
+        "selectHelperMessage": "피드백 유형을 선택하세요",
+        "feedbackPlaceholder": "여기에 입력하세요...",
+        "checkbox": {
+          "research": "제품 연구에 참여하고 싶습니다.",
+          "policy": "예, Atlassian 팀이 제 경험을 알아보고 Atlassian 제품 및 서비스를 개선할 수 있도록 저에게 연락할 수 있습니다."
+        }
+      }
+    },
+    "spinner": {
+      "label": "콘텐츠 불러오는 중..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub 토큰 필요",
+      "description": "아직 GitHub Personal Access Token (PAT)을 설정하지 않았습니다. 이 토큰은 앱이 저장소에 접근하는 데 필요합니다."
+    },
+    "popUpMessage": {
+      "success": "토큰이 성공적으로 저장되었습니다.",
+      "warning": "토큰이 성공적으로 제거되었습니다.",
+      "error": "토큰이 유효하지 않거나 만료되었습니다. 새 토큰을 생성한 후 다시 시도하세요."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "계속하려면 GitHub Personal Access Token (PAT)을 입력하세요. 생성 방법 알아보기: ",
+        "link": "개인 액세스 토큰 관리"
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "여기에 토큰을 입력하세요",
+        "errorMessage": "잘못된 토큰 형식입니다. 확인 후 다시 시도하세요.",
+        "helperMessage": "GitHub 계정 설정에서 생성한 세분화된 또는 고전적인 PAT를 사용하세요.",
+        "validMessage": "좋습니다! 유효한 토큰 형식입니다."
+      },
+      "showPrivateRepo": "비공개 저장소 표시"
+    },
+    "button": {
+      "submit": {
+        "token": "토큰 저장",
+        "feedback": "피드백 보내기"
+      },
+      "edit": "편집",
+      "remove": "제거",
+      "approve": "승인",
+      "merge": "병합",
+      "feedback": "피드백 주기",
+      "cancel": "취소",
+      "settings": "앱 설정 열기"
+    }
+  }
+}

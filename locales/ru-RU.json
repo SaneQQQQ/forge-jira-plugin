@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "Интеграция с GitHub",
+      "description": "Настройте свой GitHub PAT токен",
+      "label": "Настройки интеграции с GitHub"
+    },
+    "issueContext": {
+      "title": "Интеграция с GitHub",
+      "description": "Просмотр связанных Pull Request'ов GitHub",
+      "label": "Pull Request'ы"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Pull Request'ы не найдены",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Ветка",
+        "state": "Статус",
+        "actions": "Действия"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "закрыт",
+          "approved": "одобрен",
+          "open": "открыт"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Задать вопрос",
+        "comment": "Оставить комментарий",
+        "bug": "Сообщить об ошибке",
+        "suggestion": "Предложить улучшение"
+      },
+      "feedbackQuestions": {
+        "ask": "Что бы вы хотели узнать?",
+        "comment": "Поделитесь своими мыслями",
+        "bug": "Опишите ошибку или проблему",
+        "suggestion": "Расскажите, что можно улучшить",
+        "default": "Ваш отзыв"
+      },
+      "feedbackConsole": {
+        "question": "Проблемы с интеграцией GitHub?"
+      },
+      "feedbackModal": {
+        "header": "Поделитесь своими мыслями",
+        "selectLabel": "Выберите тип отзыва",
+        "selectPlaceholder": "Выберите...",
+        "selectHelperMessage": "Выберите категорию вашего отзыва",
+        "feedbackPlaceholder": "Введите отзыв...",
+        "checkbox": {
+          "research": "Я хочу участвовать в исследовании продукта.",
+          "policy": "Да, команды Atlassian могут связаться со мной, чтобы узнать о моем опыте и улучшить продукты и сервисы Atlassian."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Загрузка содержимого..."
+    },
+    "noTokenEmptyState": {
+      "header": "Требуется токен GitHub",
+      "description": "Вы еще не установили GitHub Personal Access Token (PAT). Этот токен необходим для доступа приложения к вашим репозиториям."
+    },
+    "popUpMessage": {
+      "success": "Ваш токен был успешно сохранен.",
+      "warning": "Ваш токен был успешно удален.",
+      "error": "Ваш токен недействителен или истек. Пожалуйста, создайте новый и попробуйте снова."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Токен",
+      "instruction": {
+        "text": "Введите свой GitHub Personal Access Token (PAT), чтобы продолжить. Узнайте, как его создать: ",
+        "link": "Управление вашими токенами доступа."
+      },
+      "tokenInput": {
+        "label": "Personal Access Токен",
+        "placeholder": "Вставьте ваш токен сюда",
+        "errorMessage": "Недопустимый формат токена. Пожалуйста, проверьте и попробуйте снова.",
+        "helperMessage": "Используйте PAT с ограниченными правами или классический PAT, созданный в настройках вашего GitHub аккаунта.",
+        "validMessage": "Отлично! Формат токена верный."
+      },
+      "showPrivateRepo": "Показывать приватные репозитории"
+    },
+    "button": {
+      "submit": {
+        "token": "Сохранить токен",
+        "feedback": "Отправить отзыв"
+      },
+      "edit": "Редактировать",
+      "remove": "Удалить",
+      "approve": "Одобрить",
+      "merge": "Объединить",
+      "feedback": "Оставить отзыв",
+      "cancel": "Отмена",
+      "settings": "Открыть настройки приложения"
+    }
+  }
+}

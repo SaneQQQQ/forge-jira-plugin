@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub-integraatio",
+      "description": "Määritä GitHub PAT -tokenisi",
+      "label": "GitHub-integraation asetukset"
+    },
+    "issueContext": {
+      "title": "GitHub-integraatio",
+      "description": "Näytä liittyvät GitHub Pull Requestit",
+      "label": "Pull Requestit"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Pull Requesteja ei löytynyt",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Haara",
+        "state": "Tila",
+        "actions": "Toiminnot"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "suljettu",
+          "approved": "hyväksytty",
+          "open": "avoinna"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Kysy kysymys",
+        "comment": "Jätä kommentti",
+        "bug": "Ilmoita virheestä",
+        "suggestion": "Ehdota parannusta"
+      },
+      "feedbackQuestions": {
+        "ask": "Mitä haluaisit tietää?",
+        "comment": "Kerro meille, mitä sinulla on mielessä",
+        "bug": "Kuvaile virhe tai ongelma",
+        "suggestion": "Kerro, mitä haluaisit parantaa",
+        "default": "Palautteesi"
+      },
+      "feedbackConsole": {
+        "question": "Onko sinulla ongelmia GitHub-integraation kanssa?"
+      },
+      "feedbackModal": {
+        "header": "Jaa ajatuksesi",
+        "selectLabel": "Valitse palaute",
+        "selectPlaceholder": "Valitse...",
+        "selectHelperMessage": "Valitse palautteen tyyppi",
+        "feedbackPlaceholder": "Kirjoita tähän...",
+        "checkbox": {
+          "research": "Haluaisin osallistua tuotekehityksen tutkimukseen.",
+          "policy": "Kyllä, Atlassianin tiimit voivat ottaa minuun yhteyttä oppiakseen kokemuksistani ja parantaakseen Atlassianin tuotteita ja palveluja."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Ladataan sisältöä..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub-token vaaditaan",
+      "description": "Et ole vielä määrittänyt GitHubin Personal Access Tokenia (PAT). Tämä token vaaditaan, jotta sovellus voi käyttää repositorioitasi."
+    },
+    "popUpMessage": {
+      "success": "Tokenisi on tallennettu onnistuneesti.",
+      "warning": "Tokenisi on poistettu onnistuneesti.",
+      "error": "Tokenisi on virheellinen tai vanhentunut. Luo uusi ja yritä uudelleen."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Syötä GitHubin Personal Access Token (PAT) jatkaaksesi. Lue, miten voit luoda sellaisen: ",
+        "link": "Henkilökohtaisten käyttöoikeustokenien hallinta."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Syötä token tähän",
+        "errorMessage": "Virheellinen tokenin muoto. Tarkista ja yritä uudelleen.",
+        "helperMessage": "Käytä hienojakoista tai klassista PAT:ia, joka on luotu GitHub-tilisi asetuksissa.",
+        "validMessage": "Näyttää hyvältä! Tokenin muoto on kelvollinen."
+      },
+      "showPrivateRepo": "Näytä yksityiset repositoriot"
+    },
+    "button": {
+      "submit": {
+        "token": "Tallenna token",
+        "feedback": "Lähetä palaute"
+      },
+      "edit": "Muokkaa",
+      "remove": "Poista",
+      "approve": "Hyväksy",
+      "merge": "Yhdistä",
+      "feedback": "Anna palautetta",
+      "cancel": "Peruuta",
+      "settings": "Avaa sovelluksen asetukset"
+    }
+  }
+}

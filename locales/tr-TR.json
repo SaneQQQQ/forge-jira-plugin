@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub Entegrasyonu",
+      "description": "GitHub PAT tokeninizi yapılandırın",
+      "label": "GitHub Entegrasyon Ayarları"
+    },
+    "issueContext": {
+      "title": "GitHub Entegrasyonu",
+      "description": "İlgili GitHub Pull Request’lerini görüntüle",
+      "label": "Pull Requestler"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Pull request bulunamadı",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Dal",
+        "state": "Durum",
+        "actions": "İşlemler"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "kapalı",
+          "approved": "onaylandı",
+          "open": "açık"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Soru sor",
+        "comment": "Yorum bırak",
+        "bug": "Hata bildir",
+        "suggestion": "İyileştirme öner"
+      },
+      "feedbackQuestions": {
+        "ask": "Ne öğrenmek istersiniz?",
+        "comment": "Düşüncelerinizi bize bildirin",
+        "bug": "Hata veya sorunu açıklayın",
+        "suggestion": "Neyi geliştirmek istediğinizi bize söyleyin",
+        "default": "Geri bildiriminiz"
+      },
+      "feedbackConsole": {
+        "question": "GitHub entegrasyonunuzda herhangi bir sorun var mı?"
+      },
+      "feedbackModal": {
+        "header": "Düşüncelerinizi paylaşın",
+        "selectLabel": "Geri Bildirim Seç",
+        "selectPlaceholder": "Seç...",
+        "selectHelperMessage": "Geri bildirim türünüzü seçin",
+        "feedbackPlaceholder": "Buraya yazın...",
+        "checkbox": {
+          "research": "Ürün araştırmasına katılmak istiyorum.",
+          "policy": "Evet, Atlassian ekipleri deneyimlerimi öğrenmek ve Atlassian ürünlerini ve hizmetlerini geliştirmek için benimle iletişime geçebilir."
+        }
+      }
+    },
+    "spinner": {
+      "label": "İçerik yükleniyor..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub Token Gerekiyor",
+      "description": "Henüz bir GitHub Personal Access Token (PAT) ayarlamadınız. Bu token, uygulamanın depolarınıza erişebilmesi için gereklidir."
+    },
+    "popUpMessage": {
+      "success": "Tokeniniz başarıyla kaydedildi.",
+      "warning": "Tokeniniz başarıyla kaldırıldı.",
+      "error": "Tokeniniz geçersiz veya süresi dolmuş. Lütfen yeni bir token oluşturun ve tekrar deneyin."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Devam etmek için GitHub Personal Access Token (PAT) girin. Nasıl oluşturulacağını öğrenin: ",
+        "link": "Kişisel erişim tokenlerinizi yönetme."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Tokeninizi buraya girin",
+        "errorMessage": "Geçersiz token formatı. Lütfen kontrol edin ve tekrar deneyin.",
+        "helperMessage": "GitHub hesap ayarlarınızda oluşturulan ayrıntılı veya klasik bir PAT kullanın.",
+        "validMessage": "Görünüşe göre iyi! Geçerli token formatı."
+      },
+      "showPrivateRepo": "Özel depoları göster"
+    },
+    "button": {
+      "submit": {
+        "token": "Tokeni Kaydet",
+        "feedback": "Geri Bildirim Gönder"
+      },
+      "edit": "Düzenle",
+      "remove": "Kaldır",
+      "approve": "Onayla",
+      "merge": "Birleştir",
+      "feedback": "Geri bildirim ver",
+      "cancel": "İptal",
+      "settings": "Uygulama Ayarlarını Aç"
+    }
+  }
+}

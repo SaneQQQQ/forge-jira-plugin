@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "Integracja z GitHub",
+      "description": "Skonfiguruj token PAT GitHub",
+      "label": "Ustawienia integracji GitHub"
+    },
+    "issueContext": {
+      "title": "Integracja z GitHub",
+      "description": "Zobacz powiązane Pull Requesty GitHub",
+      "label": "Pull Requesty"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Nie znaleziono Pull Requestów",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Gałąź",
+        "state": "Status",
+        "actions": "Akcje"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "zamknięty",
+          "approved": "zatwierdzony",
+          "open": "otwarty"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Zadaj pytanie",
+        "comment": "Zostaw komentarz",
+        "bug": "Zgłoś błąd",
+        "suggestion": "Zaproponuj ulepszenie"
+      },
+      "feedbackQuestions": {
+        "ask": "Co chciałbyś wiedzieć?",
+        "comment": "Podziel się swoimi przemyśleniami",
+        "bug": "Opisz błąd lub problem",
+        "suggestion": "Powiedz nam, co chciałbyś poprawić",
+        "default": "Twoja opinia"
+      },
+      "feedbackConsole": {
+        "question": "Czy masz problemy z integracją GitHub?"
+      },
+      "feedbackModal": {
+        "header": "Podziel się swoimi myślami",
+        "selectLabel": "Wybierz opinię",
+        "selectPlaceholder": "Wybierz...",
+        "selectHelperMessage": "Wybierz typ opinii",
+        "feedbackPlaceholder": "Wpisz tutaj...",
+        "checkbox": {
+          "research": "Chciałbym wziąć udział w badaniach produktu.",
+          "policy": "Tak, zespoły Atlassian mogą się ze mną skontaktować, aby poznać moje doświadczenia i poprawić produkty i usługi Atlassian."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Ładowanie treści..."
+    },
+    "noTokenEmptyState": {
+      "header": "Wymagany token GitHub",
+      "description": "Nie ustawiłeś jeszcze GitHub Personal Access Token (PAT). Token jest wymagany, aby aplikacja mogła uzyskać dostęp do Twoich repozytoriów."
+    },
+    "popUpMessage": {
+      "success": "Twój token został pomyślnie zapisany.",
+      "warning": "Twój token został pomyślnie usunięty.",
+      "error": "Twój token jest nieprawidłowy lub wygasł. Wygeneruj nowy i spróbuj ponownie."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Wprowadź GitHub Personal Access Token (PAT), aby kontynuować. Dowiedz się, jak go utworzyć: ",
+        "link": "Zarządzanie osobistymi tokenami dostępu."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Wklej swój token tutaj",
+        "errorMessage": "Nieprawidłowy format tokenu. Sprawdź i spróbuj ponownie.",
+        "helperMessage": "Użyj precyzyjnego lub klasycznego PAT wygenerowanego w ustawieniach konta GitHub.",
+        "validMessage": "Wygląda dobrze! Poprawny format tokenu."
+      },
+      "showPrivateRepo": "Pokaż prywatne repozytoria"
+    },
+    "button": {
+      "submit": {
+        "token": "Zapisz token",
+        "feedback": "Wyślij opinię"
+      },
+      "edit": "Edytuj",
+      "remove": "Usuń",
+      "approve": "Zatwierdź",
+      "merge": "Scal",
+      "feedback": "Dodaj opinię",
+      "cancel": "Anuluj",
+      "settings": "Otwórz ustawienia aplikacji"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "Integrare GitHub",
+      "description": "Configurează tokenul PAT GitHub",
+      "label": "Setări Integrare GitHub"
+    },
+    "issueContext": {
+      "title": "Integrare GitHub",
+      "description": "Vizualizează Pull Request-urile asociate din GitHub",
+      "label": "Pull Request-uri"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Nu au fost găsite Pull Request-uri",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Ramură",
+        "state": "Stare",
+        "actions": "Acțiuni"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "închis",
+          "approved": "aprobat",
+          "open": "deschis"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Pune o întrebare",
+        "comment": "Lasă un comentariu",
+        "bug": "Raportează o eroare",
+        "suggestion": "Sugerează o îmbunătățire"
+      },
+      "feedbackQuestions": {
+        "ask": "Ce ai dori să afli?",
+        "comment": "Spune-ne ce ai pe minte",
+        "bug": "Descrie eroarea sau problema",
+        "suggestion": "Spune-ne ce ai dori să îmbunătățim",
+        "default": "Feedback-ul tău"
+      },
+      "feedbackConsole": {
+        "question": "Ai probleme cu integrarea GitHub?"
+      },
+      "feedbackModal": {
+        "header": "Împărtășește-ți gândurile",
+        "selectLabel": "Selectează Feedback",
+        "selectPlaceholder": "Selectează...",
+        "selectHelperMessage": "Alege un tip de feedback",
+        "feedbackPlaceholder": "Scrie aici...",
+        "checkbox": {
+          "research": "Aș dori să particip la cercetarea produsului.",
+          "policy": "Da, echipele Atlassian pot să mă contacteze pentru a afla despre experiențele mele și a îmbunătăți produsele și serviciile Atlassian."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Se încarcă conținut..."
+    },
+    "noTokenEmptyState": {
+      "header": "Token GitHub necesar",
+      "description": "Nu ai configurat încă un Personal Access Token (PAT) GitHub. Acest token este necesar pentru ca aplicația să acceseze repository-urile tale."
+    },
+    "popUpMessage": {
+      "success": "Token-ul tău a fost salvat cu succes.",
+      "warning": "Token-ul tău a fost eliminat cu succes.",
+      "error": "Token-ul tău este invalid sau expirat. Te rugăm să generezi unul nou și încearcă din nou."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Introdu Personal Access Token-ul GitHub (PAT) pentru a continua. Află cum să creezi unul: ",
+        "link": "Gestionarea token-urilor tale personale de acces."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Introdu token-ul aici",
+        "errorMessage": "Format de token invalid. Verifică și încearcă din nou.",
+        "helperMessage": "Folosește un PAT detaliat sau clasic generat în setările contului tău GitHub.",
+        "validMessage": "Arată bine! Format de token valid."
+      },
+      "showPrivateRepo": "Afișează repository-urile private"
+    },
+    "button": {
+      "submit": {
+        "token": "Salvează Token-ul",
+        "feedback": "Trimite Feedback"
+      },
+      "edit": "Editează",
+      "remove": "Elimină",
+      "approve": "Aprobă",
+      "merge": "Fuzionează",
+      "feedback": "Oferă feedback",
+      "cancel": "Anulează",
+      "settings": "Deschide setările aplicației"
+    }
+  }
+}

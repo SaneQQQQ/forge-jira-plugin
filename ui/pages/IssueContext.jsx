@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import LoadingSpinner from "../components/LoadingSpinner";
 import RepoExpand from "../components/RepoExpand";
 import {invoke} from '@forge/bridge';
-import ForgeReconciler, {Stack} from '@forge/react'
+import ForgeReconciler, {I18nProvider, Stack} from '@forge/react'
 import NoTokenEmptyState from "../components/NoTokenEmptyState";
 
 const IssueContext = () => {
@@ -50,7 +50,9 @@ const IssueContext = () => {
 
 ForgeReconciler.render(
     <React.StrictMode>
-        <IssueContext />
+        <I18nProvider>
+            <IssueContext/>
+        </I18nProvider>
     </React.StrictMode>
 );
 

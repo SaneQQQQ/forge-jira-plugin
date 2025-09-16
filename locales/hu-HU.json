@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub-integráció",
+      "description": "Állítsd be a GitHub PAT tokent",
+      "label": "GitHub-integráció beállításai"
+    },
+    "issueContext": {
+      "title": "GitHub-integráció",
+      "description": "Kapcsolódó GitHub Pull Requestek megtekintése",
+      "label": "Pull Requestek"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Nem található Pull Request",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Ág",
+        "state": "Állapot",
+        "actions": "Műveletek"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "lezárva",
+          "approved": "jóváhagyva",
+          "open": "nyitva"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Kérdés feltevése",
+        "comment": "Megjegyzés írása",
+        "bug": "Hiba jelentése",
+        "suggestion": "Javaslat küldése"
+      },
+      "feedbackQuestions": {
+        "ask": "Mit szeretnél tudni?",
+        "comment": "Mondd el, mi jár a fejedben",
+        "bug": "Írd le a hibát vagy problémát",
+        "suggestion": "Mondd el, min szeretnél javítani",
+        "default": "Visszajelzésed"
+      },
+      "feedbackConsole": {
+        "question": "Van valamilyen problémád a GitHub-integrációval?"
+      },
+      "feedbackModal": {
+        "header": "Oszd meg a gondolataidat",
+        "selectLabel": "Válaszd ki a visszajelzés típusát",
+        "selectPlaceholder": "Válassz...",
+        "selectHelperMessage": "Válassz visszajelzés típust",
+        "feedbackPlaceholder": "Írj ide...",
+        "checkbox": {
+          "research": "Szeretnék részt venni a termékkutatásban.",
+          "policy": "Igen, az Atlassian csapatai felvehetik velem a kapcsolatot, hogy megismerjék tapasztalataimat, és javítsák az Atlassian termékeit és szolgáltatásait."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Tartalom betöltése..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub-token szükséges",
+      "description": "Még nem állítottál be GitHub Personal Access Tokent (PAT). Ez a token szükséges ahhoz, hogy az alkalmazás hozzáférjen a repóidhoz."
+    },
+    "popUpMessage": {
+      "success": "A token sikeresen mentve.",
+      "warning": "A token sikeresen eltávolítva.",
+      "error": "A token érvénytelen vagy lejárt. Kérlek, hozz létre egy újat és próbáld meg újra."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Add meg a GitHub Personal Access Tokent (PAT) a folytatáshoz. Tudj meg többet a létrehozásról: ",
+        "link": "Személyes hozzáférési tokenek kezelése."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Ide írd be a tokent",
+        "errorMessage": "Érvénytelen token formátum. Ellenőrizd és próbáld újra.",
+        "helperMessage": "Használj finomhangolt vagy klasszikus PAT-et, amelyet a GitHub-fiókod beállításaiban hoztál létre.",
+        "validMessage": "Rendben van! Érvényes token formátum."
+      },
+      "showPrivateRepo": "Privát repók megjelenítése"
+    },
+    "button": {
+      "submit": {
+        "token": "Token mentése",
+        "feedback": "Visszajelzés küldése"
+      },
+      "edit": "Szerkesztés",
+      "remove": "Eltávolítás",
+      "approve": "Jóváhagyás",
+      "merge": "Összeolvasztás",
+      "feedback": "Visszajelzés adása",
+      "cancel": "Mégse",
+      "settings": "Alkalmazás beállításainak megnyitása"
+    }
+  }
+}

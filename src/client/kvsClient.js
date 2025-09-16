@@ -3,7 +3,6 @@ import {kvs} from '@forge/kvs';
 export const setSecret = async (key, value) => {
     try {
         validateNonEmptyString('Key', key);
-        validateNonEmptyString('Value', value);
         await kvs.setSecret(key, value);
         return true;
     } catch (err) {
@@ -32,6 +31,42 @@ export const deleteSecret = async (key) => {
         return true;
     } catch (err) {
         const errorMessage = `Failed to delete secret for key "${key}": ${err.message}`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
+    }
+};
+
+export const setProperty = async (key, value) => {
+    try {
+        validateNonEmptyString('Key', key);
+        await kvs.set(key, value);
+        return true;
+    } catch (err) {
+        const errorMessage = `Failed to set property for key "${key}": ${err.message}`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
+    }
+};
+
+export const getProperty = async (key) => {
+    try {
+        validateNonEmptyString('Key', key);
+        const property = await kvs.get(key);
+        return property ?? '';
+    } catch (err) {
+        const errorMessage = `Failed to get property for key "${key}": ${err.message}`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
+    }
+};
+
+export const deleteProperty = async (key) => {
+    try {
+        validateNonEmptyString('Key', key);
+        await kvs.delete(key);
+        return true;
+    } catch (err) {
+        const errorMessage = `Failed to delete property for key "${key}": ${err.message}`;
         console.error(errorMessage);
         throw new Error(errorMessage);
     }

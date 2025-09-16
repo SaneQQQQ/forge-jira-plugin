@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "Intégration GitHub",
+      "description": "Configurez votre jeton PAT GitHub",
+      "label": "Paramètres d'intégration GitHub"
+    },
+    "issueContext": {
+      "title": "Intégration GitHub",
+      "description": "Afficher les Pull Requests GitHub associées",
+      "label": "Pull Requests"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Aucune Pull Request trouvée",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Branche",
+        "state": "Statut",
+        "actions": "Actions"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "fermée",
+          "approved": "approuvée",
+          "open": "ouverte"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Poser une question",
+        "comment": "Laisser un commentaire",
+        "bug": "Signaler un bug",
+        "suggestion": "Suggérer une amélioration"
+      },
+      "feedbackQuestions": {
+        "ask": "Que souhaitez-vous savoir ?",
+        "comment": "Partagez vos impressions",
+        "bug": "Décrivez le bug ou le problème",
+        "suggestion": "Dites-nous ce que vous aimeriez améliorer",
+        "default": "Votre retour"
+      },
+      "feedbackConsole": {
+        "question": "Des problèmes avec votre intégration GitHub ?"
+      },
+      "feedbackModal": {
+        "header": "Partagez vos impressions",
+        "selectLabel": "Sélectionner un type de retour",
+        "selectPlaceholder": "Sélectionnez...",
+        "selectHelperMessage": "Choisissez un type de retour",
+        "feedbackPlaceholder": "Écrivez ici...",
+        "checkbox": {
+          "research": "Je souhaite participer à des études produit.",
+          "policy": "Oui, les équipes Atlassian peuvent me contacter pour recueillir mon expérience et améliorer les produits et services Atlassian."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Chargement du contenu..."
+    },
+    "noTokenEmptyState": {
+      "header": "Jeton GitHub requis",
+      "description": "Vous n'avez pas encore défini de GitHub Personal Access Token (PAT). Ce jeton est nécessaire pour que l'application puisse accéder à vos dépôts."
+    },
+    "popUpMessage": {
+      "success": "Votre jeton a été enregistré avec succès.",
+      "warning": "Votre jeton a été supprimé avec succès.",
+      "error": "Votre jeton est invalide ou expiré. Veuillez en générer un nouveau et réessayer."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Saisissez votre GitHub Personal Access Token (PAT) pour continuer. Découvrez comment en créer un : ",
+        "link": "Gestion de vos jetons d'accès personnels."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Collez votre jeton ici",
+        "errorMessage": "Format de jeton invalide. Veuillez vérifier et réessayer.",
+        "helperMessage": "Utilisez un PAT à portée fine ou classique généré dans les paramètres de votre compte GitHub.",
+        "validMessage": "Parfait ! Format de jeton valide."
+      },
+      "showPrivateRepo": "Afficher les dépôts privés"
+    },
+    "button": {
+      "submit": {
+        "token": "Enregistrer le jeton",
+        "feedback": "Envoyer le retour"
+      },
+      "edit": "Modifier",
+      "remove": "Supprimer",
+      "approve": "Approuver",
+      "merge": "Fusionner",
+      "feedback": "Donner un retour",
+      "cancel": "Annuler",
+      "settings": "Ouvrir les paramètres de l'application"
+    }
+  }
+}

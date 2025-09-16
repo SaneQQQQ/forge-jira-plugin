@@ -1,5 +1,5 @@
 import React from 'react';
-import {SectionMessage, Text} from '@forge/react';
+import {SectionMessage, Text, useTranslation} from '@forge/react';
 
 const POPUP_MESSAGE_TYPE = Object.freeze({
     ERROR: 'error',
@@ -7,22 +7,24 @@ const POPUP_MESSAGE_TYPE = Object.freeze({
     REMOVED: 'removed',
 });
 
-const MESSAGES = Object.freeze({
-    [POPUP_MESSAGE_TYPE.SAVED]: {
-        appearance: 'success',
-        text: 'Your token has been successfully saved.',
-    },
-    [POPUP_MESSAGE_TYPE.REMOVED]: {
-        appearance: 'success',
-        text: 'Your token has been successfully removed.',
-    },
-    [POPUP_MESSAGE_TYPE.ERROR]: {
-        appearance: 'error',
-        text: 'Your token is invalid or expired. Please generate a new one and try again.',
-    },
-});
-
 const PopUpMessage = ({type}) => {
+    const {t} = useTranslation();
+
+    const MESSAGES = Object.freeze({
+        [POPUP_MESSAGE_TYPE.SAVED]: {
+            appearance: 'success',
+            text: t('ui.popUpMessage.success'),
+        },
+        [POPUP_MESSAGE_TYPE.REMOVED]: {
+            appearance: 'warning',
+            text: t('ui.popUpMessage.warning'),
+        },
+        [POPUP_MESSAGE_TYPE.ERROR]: {
+            appearance: 'error',
+            text: t('ui.popUpMessage.error'),
+        },
+    });
+
     const message = MESSAGES[type];
 
     if (!message) {

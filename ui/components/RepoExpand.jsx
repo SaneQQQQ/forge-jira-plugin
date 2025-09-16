@@ -27,10 +27,9 @@ const RepoExpand = ({repository}) => {
 
     return (
         <Box xcss={{
+            backgroundColor: 'elevation.surface.raised',
+            boxShadow: 'elevation.shadow.raised',
             borderRadius: 'border.radius',
-            borderStyle: 'solid',
-            borderWidth: 'border.width',
-            borderColor: 'color.border',
             padding: 'space.100'
         }}>
             <Button

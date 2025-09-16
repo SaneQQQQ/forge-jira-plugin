@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub 整合",
+      "description": "設定你的 GitHub PAT 權杖",
+      "label": "GitHub 整合設定"
+    },
+    "issueContext": {
+      "title": "GitHub 整合",
+      "description": "檢視相關的 GitHub Pull Requests",
+      "label": "Pull Requests"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "未找到任何 Pull Request",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "分支",
+        "state": "狀態",
+        "actions": "操作"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "已關閉",
+          "approved": "已核准",
+          "open": "開啟中"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "提出問題",
+        "comment": "留下評論",
+        "bug": "回報錯誤",
+        "suggestion": "提出改進建議"
+      },
+      "feedbackQuestions": {
+        "ask": "你想知道什麼？",
+        "comment": "告訴我們你的想法",
+        "bug": "請描述錯誤或問題",
+        "suggestion": "讓我們知道你希望改進的地方",
+        "default": "你的意見回饋"
+      },
+      "feedbackConsole": {
+        "question": "你的 GitHub 整合有任何問題嗎？"
+      },
+      "feedbackModal": {
+        "header": "分享你的想法",
+        "selectLabel": "選擇回饋類型",
+        "selectPlaceholder": "請選擇...",
+        "selectHelperMessage": "選擇你的回饋類型",
+        "feedbackPlaceholder": "請在此輸入...",
+        "checkbox": {
+          "research": "我願意參與產品研究。",
+          "policy": "是的，Atlassian 團隊可以聯繫我，了解我的使用經驗，以改進 Atlassian 的產品和服務。"
+        }
+      }
+    },
+    "spinner": {
+      "label": "正在載入內容..."
+    },
+    "noTokenEmptyState": {
+      "header": "需要 GitHub 權杖",
+      "description": "你尚未設定 GitHub Personal Access Token (PAT)。此權杖是應用程式存取你的儲存庫所必須的。"
+    },
+    "popUpMessage": {
+      "success": "你的權杖已成功儲存。",
+      "warning": "你的權杖已成功移除。",
+      "error": "你的權杖無效或已過期。請產生新的權杖並再試一次。"
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "請輸入你的 GitHub Personal Access Token (PAT) 以繼續。瞭解如何建立：",
+        "link": "管理你的個人存取權杖。"
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "在此輸入你的權杖",
+        "errorMessage": "權杖格式無效。請檢查後再試一次。",
+        "helperMessage": "請使用在 GitHub 帳號設定中產生的細粒度或經典 PAT。",
+        "validMessage": "看起來不錯！權杖格式有效。"
+      },
+      "showPrivateRepo": "顯示私人儲存庫"
+    },
+    "button": {
+      "submit": {
+        "token": "儲存權杖",
+        "feedback": "送出回饋"
+      },
+      "edit": "編輯",
+      "remove": "移除",
+      "approve": "核准",
+      "merge": "合併",
+      "feedback": "提供回饋",
+      "cancel": "取消",
+      "settings": "開啟應用程式設定"
+    }
+  }
+}
