@@ -1,34 +1,49 @@
 name: Build Forge App
 
 on:
-  push:
-    branches:
-      - main
   pull_request: {}
 
 jobs:
-  build:
+  build-and-commit:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # fetch full history
+          ref: ${{ github.head_ref }}  # checkout current branch for PR or push
 
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
 #
+#      # Step 3: Install dependencies
 #      - name: Install dependencies
 #        run: npm install
 
-      - name: Set execute permissions for scripts
+      # Step 4: Make scripts executable
+      - name: Set execute permissions
         run: |
           chmod +x ./scripts/i18n-generate-diff.sh
           chmod +x ./scripts/i18n-apply-diff.sh
 
-      - name: Run i18n-generate-diff script
-        run: ./scripts/i18n-generate-diff.sh
+      # Step 5: Run scripts
+      - name: Run scripts
+        run: |
+          ./scripts/i18n-generate-diff.sh
+          ./scripts/i18n-apply-diff.sh
 
-      - name: Run i18n-apply-diff script
-        run: ./scripts/i18n-apply-diff.sh
+      # Step 6: Commit and push changes
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Apply scripts changes [skip ci]"
+          git push origin HEAD:${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
