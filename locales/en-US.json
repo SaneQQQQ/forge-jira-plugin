@@ -35,6 +35,7 @@
         "bug": "Report a bug",
         "suggestion": "Suggest an improvement"
       },
+      "test": "test",
       "feedbackQuestions": {
         "ask": "What would you like to know?",
         "comment": "Let us know what's on your mind",
