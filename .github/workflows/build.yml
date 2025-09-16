@@ -19,12 +19,10 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Clone & Run LibreTranslate
+      - name: Run LibreTranslate with Docker
         run: |
-          git clone https://github.com/LibreTranslate/LibreTranslate
-          cd LibreTranslate
-          chmod +x run.sh
-          ./run.sh &
+          docker pull libretranslate/libretranslate:latest
+          docker run -d --name libretranslate -p 5000:5000 libretranslate/libretranslate:latest
 
       - name: Wait for LibreTranslate to be ready
         run: |
