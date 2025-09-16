@@ -55,7 +55,8 @@
           "research": "Chciałbym wziąć udział w badaniach produktu.",
           "policy": "Tak, zespoły Atlassian mogą się ze mną skontaktować, aby poznać moje doświadczenia i poprawić produkty i usługi Atlassian."
         }
-      }
+      },
+      "test": "test"
     },
     "spinner": {
       "label": "Ładowanie treści..."

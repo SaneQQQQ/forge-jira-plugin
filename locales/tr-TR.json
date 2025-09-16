@@ -55,7 +55,8 @@
           "research": "Ürün araştırmasına katılmak istiyorum.",
           "policy": "Evet, Atlassian ekipleri deneyimlerimi öğrenmek ve Atlassian ürünlerini ve hizmetlerini geliştirmek için benimle iletişime geçebilir."
         }
-      }
+      },
+      "test": "test"
     },
     "spinner": {
       "label": "İçerik yükleniyor..."

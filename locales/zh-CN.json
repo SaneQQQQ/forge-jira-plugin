@@ -55,7 +55,8 @@
           "research": "我愿意参与产品调研。",
           "policy": "是的，Atlassian 团队可以联系我，了解我的使用体验，以改进 Atlassian 产品和服务。"
         }
-      }
+      },
+      "test": "test"
     },
     "spinner": {
       "label": "正在加载内容..."
