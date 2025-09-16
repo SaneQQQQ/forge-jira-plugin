@@ -8,36 +8,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0   # fetch full history
-          ref: ${{ github.head_ref }}  # checkout current branch for PR or push
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
-      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-#
-#      # Step 3: Install dependencies
-#      - name: Install dependencies
-#        run: npm install
 
-      # Step 4: Make scripts executable
+      - name: Start LibreTranslate
+        run: |
+          docker pull libretranslate/libretranslate:latest
+          docker run -d --name libretranslate -p 5000:5000 libretranslate/libretranslate:latest
+
+      - name: Wait for LibreTranslate to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -s http://localhost:5000/health; then
+              echo "LibreTranslate is ready"
+              break
+            fi
+            echo "Waiting for LibreTranslate..."
+            sleep 2
+          done
+
       - name: Set execute permissions
         run: |
           chmod +x ./scripts/i18n-generate-diff.sh
           chmod +x ./scripts/i18n-apply-diff.sh
 
-      # Step 5: Run scripts
       - name: Run scripts
         run: |
           ./scripts/i18n-generate-diff.sh
           ./scripts/i18n-apply-diff.sh
 
-      # Step 6: Commit and push changes
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
