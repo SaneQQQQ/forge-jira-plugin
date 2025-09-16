@@ -1,5 +1,5 @@
 import {getAllRepos} from '../client/githubApiClient';
-import {deleteSecret, getSecret, setSecret} from '../client/kvsSecretsClient';
+import {deleteSecret, getSecret, setSecret} from '../client/kvsClient';
 import {GITHUB_API_TOKEN_KEY} from '../common/constants';
 
 export const validateToken = async ({payload}) => {

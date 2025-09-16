@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub 連携",
+      "description": "GitHub PAT トークンを設定してください",
+      "label": "GitHub 連携設定"
+    },
+    "issueContext": {
+      "title": "GitHub 連携",
+      "description": "関連する GitHub のプルリクエストを表示",
+      "label": "プルリクエスト"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "プルリクエストが見つかりません",
+      "head": {
+        "pullRequest": "プルリクエスト",
+        "branch": "ブランチ",
+        "state": "状態",
+        "actions": "アクション"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "クローズ済み",
+          "approved": "承認済み",
+          "open": "オープン"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "質問する",
+        "comment": "コメントを残す",
+        "bug": "バグを報告する",
+        "suggestion": "改善を提案する"
+      },
+      "feedbackQuestions": {
+        "ask": "何を知りたいですか？",
+        "comment": "ご意見をお聞かせください",
+        "bug": "バグまたは問題を記載してください",
+        "suggestion": "改善してほしい点を教えてください",
+        "default": "フィードバック"
+      },
+      "feedbackConsole": {
+        "question": "GitHub 連携に問題はありますか？"
+      },
+      "feedbackModal": {
+        "header": "ご意見をお聞かせください",
+        "selectLabel": "フィードバックを選択",
+        "selectPlaceholder": "選択してください...",
+        "selectHelperMessage": "フィードバックの種類を選んでください",
+        "feedbackPlaceholder": "ここに入力...",
+        "checkbox": {
+          "research": "製品調査に参加したいです。",
+          "policy": "はい、Atlassian チームが私の体験について連絡し、製品やサービス改善に役立てることに同意します。"
+        }
+      }
+    },
+    "spinner": {
+      "label": "コンテンツを読み込み中..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub トークンが必要です",
+      "description": "GitHub Personal Access Token (PAT) がまだ設定されていません。このトークンはアプリがリポジトリにアクセスするために必要です。"
+    },
+    "popUpMessage": {
+      "success": "トークンが正常に保存されました。",
+      "warning": "トークンが正常に削除されました。",
+      "error": "トークンが無効または期限切れです。新しいトークンを生成して再試行してください。"
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "続行するには GitHub Personal Access Token (PAT) を入力してください。作成方法はこちら: ",
+        "link": "個人アクセストークンの管理"
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "ここにトークンを入力",
+        "errorMessage": "無効なトークン形式です。確認して再試行してください。",
+        "helperMessage": "GitHub アカウント設定で生成した細かく権限設定された PAT またはクラシック PAT を使用してください。",
+        "validMessage": "良いですね！有効なトークン形式です。"
+      },
+      "showPrivateRepo": "プライベートリポジトリを表示"
+    },
+    "button": {
+      "submit": {
+        "token": "トークンを保存",
+        "feedback": "フィードバックを送信"
+      },
+      "edit": "編集",
+      "remove": "削除",
+      "approve": "承認",
+      "merge": "マージ",
+      "feedback": "フィードバックを送る",
+      "cancel": "キャンセル",
+      "settings": "アプリ設定を開く"
+    }
+  }
+}

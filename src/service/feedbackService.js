@@ -3,13 +3,13 @@ import {fetchCurrentUserDetails} from "./userService";
 import path from "path";
 import fs from "fs";
 
-/*
-    forge variables set --encrypt AWS_ACCESS_KEY_ID [yourAccessKey]
-    forge variables set --encrypt AWS_SECRET_ACCESS_KEY [yourSecretKey]
-    forge variables set --encrypt AWS_REGION [yourRegion]
-    forge variables set --encrypt AWS_VERIFIED_SOURCE_EMAIL [your-verified-email@example.com]
-    forge variables set --encrypt AWS_DESTINATION_FEEDBACK_EMAIL [your-destination-email@example.com]
- */
+/**
+ * <p>forge variables set --encrypt AWS_ACCESS_KEY_ID [yourAccessKey]</p>
+ * <p>forge variables set --encrypt AWS_SECRET_ACCESS_KEY [yourSecretKey]</p>
+ * <p>forge variables set --encrypt AWS_REGION [yourRegion]</p>
+ * <p>forge variables set --encrypt AWS_VERIFIED_SOURCE_EMAIL [your-verified-email@example.com]</p>
+ * <p>forge variables set --encrypt AWS_DESTINATION_FEEDBACK_EMAIL [your-destination-email@example.com]</p>
+ **/
 
 export const sendFeedback = async ({payload, context}) => {
     const feedback = payload?.feedback;

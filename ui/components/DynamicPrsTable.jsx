@@ -2,14 +2,16 @@ import React from 'react';
 import {invoke} from '@forge/bridge';
 import TruncatedLink from './TruncatedLink';
 import PrStateLozenge from './PrStateLozenge';
-import {Box, Button, DynamicTable, Stack, Text} from '@forge/react';
+import {Box, Button, DynamicTable, Stack, Text, useTranslation} from '@forge/react';
 
 const DynamicPrsTable = ({pullRequests, setPullRequests}) => {
+    const {t} = useTranslation();
+
     if (!pullRequests || pullRequests.length === 0) {
         return (
             <Box paddingBlockStart='space.150' paddingBlockEnd='space.100'>
                 <Text align='center'>
-                    No pull requests found
+                    {t('ui.pullRequestTable.emptyState')}
                 </Text>
             </Box>
         );
@@ -39,10 +41,10 @@ const DynamicPrsTable = ({pullRequests, setPullRequests}) => {
 
     const head = {
         cells: [
-            {key: 'pullRequest', content: 'Pull Request', isSortable: true},
-            {key: 'branch', content: 'Branch', isSortable: true},
-            {key: 'state', content: 'State', isSortable: true},
-            {key: 'actions', content: 'Actions'},
+            {key: 'pullRequest', content: t('ui.pullRequestTable.head.pullRequest'), isSortable: true},
+            {key: 'branch', content: t('ui.pullRequestTable.head.branch'), isSortable: true},
+            {key: 'state', content: t('ui.pullRequestTable.head.state'), isSortable: true},
+            {key: 'actions', content: t('ui.pullRequestTable.head.actions')},
         ],
     };
 
@@ -68,12 +70,12 @@ const DynamicPrsTable = ({pullRequests, setPullRequests}) => {
                         <Button shouldFitContainer appearance='primary' spacing='compact'
                                 onClick={() => onApprove(pr)}
                                 isDisabled={pr.state === 'approved' || pr.state === 'closed' || pr.merged}>
-                            Approve
+                            {t('ui.button.approve')}
                         </Button>
                         <Button shouldFitContainer appearance='primary' spacing='compact'
                                 onClick={() => onMerge(pr)}
                                 isDisabled={pr.state === 'closed' || pr.merged}>
-                            Merge
+                            {t('ui.button.merge')}
                         </Button>
                     </Stack>
                 ),
@@ -87,7 +89,7 @@ const DynamicPrsTable = ({pullRequests, setPullRequests}) => {
                 head={head}
                 rows={rows}
                 rowsPerPage={5}
-                emptyView='No pull requests found'/>
+                emptyView={t('ui.pullRequestTable.emptyState')}/>
         </Box>
     );
 };

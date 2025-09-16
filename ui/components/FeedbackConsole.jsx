@@ -21,10 +21,12 @@ import {
     Stack,
     Text,
     TextArea,
+    useTranslation,
     xcss
 } from "@forge/react";
 
 const FeedbackConsole = ({}) => {
+    const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -54,24 +56,24 @@ const FeedbackConsole = ({}) => {
     });
 
     const feedbackOptions = [
-        {label: "Ask a question", value: "ask"},
-        {label: "Leave a comment", value: "comment"},
-        {label: "Report a bug", value: "bug"},
-        {label: "Suggest an improvement", value: "suggestion"},
+        {label: t('ui.feedback.feedbackOptions.ask'), value: "ask"},
+        {label: t('ui.feedback.feedbackOptions.comment'), value: "comment"},
+        {label: t('ui.feedback.feedbackOptions.bug'), value: "bug"},
+        {label: t('ui.feedback.feedbackOptions.suggestion'), value: "suggestion"},
     ];
 
     const getTextAreaLabel = () => {
         switch (selectedOption.value) {
             case "ask":
-                return "What would you like to know?";
+                return t('ui.feedback.feedbackQuestions.ask');
             case "comment":
-                return "Let us know what's on your mind";
+                return t('ui.feedback.feedbackQuestions.comment')
             case "bug":
-                return "Describe the bug or issue";
+                return t('ui.feedback.feedbackQuestions.bug');
             case "suggestion":
-                return "Let us know what you'd like to improve";
+                return t('ui.feedback.feedbackQuestions.suggestion');
             default:
-                return "Your feedback";
+                return t('ui.feedback.feedbackQuestions.default');
         }
     };
 
@@ -97,7 +99,7 @@ const FeedbackConsole = ({}) => {
             <Box alignInline='center' padding='space.250'>
                 <Stack>
                     <Text align='center' color='color.text.subtlest'>
-                        Any issues with your GitHub Integration?
+                        {t('ui.feedback.feedbackConsole.question')}
                     </Text>
                     <Inline alignInline='center'>
                         <Pressable
@@ -111,7 +113,7 @@ const FeedbackConsole = ({}) => {
                                 <Icon label='feedback' glyph='feedback'/>
                                 <Box paddingBlockStart='space.025'>
                                     <Text align='center' color='color.text.subtle' weight='medium'>
-                                        Give feedback
+                                        {t('ui.button.feedback')}
                                     </Text>
                                 </Box>
                             </Inline>
@@ -125,22 +127,22 @@ const FeedbackConsole = ({}) => {
                     <Modal onClose={closeModal}>
                         <ModalHeader>
                             <ModalTitle>
-                                Share your thoughts
+                                {t('ui.feedback.feedbackModal.header')}
                             </ModalTitle>
                         </ModalHeader>
                         <ModalBody>
                             <Label labelFor='select'>
-                                Select Feedback
+                                {t('ui.feedback.feedbackModal.selectLabel')}
                                 <RequiredAsterisk />
                             </Label>
                             <Select
                                 id='select'
-                                placeholder='Select...'
+                                placeholder={t('ui.feedback.feedbackModal.selectPlaceholder')}
                                 options={feedbackOptions}
                                 onChange={(value) => setSelectedOption(value)}
                             />
                             <HelperMessage>
-                                Choose a type of your feedback
+                                {t('ui.feedback.feedbackModal.selectHelperMessage')}
                             </HelperMessage>
                             {selectedOption && (
                                 <Box paddingBlockStart='space.200'>
@@ -153,20 +155,20 @@ const FeedbackConsole = ({}) => {
                                             id='feedbackText'
                                             value={feedbackText}
                                             onChange={(e) => setFeedbackText(e.target.value)}
-                                            placeholder='Type here...'
+                                            placeholder={t('ui.feedback.feedbackModal.feedbackPlaceholder')}
                                             spellCheck
                                         />
                                         <Box>
                                             <Stack space='space.050'>
                                                 <Checkbox
                                                     value='research'
-                                                    label="I'd like to participate in product research."
+                                                    label={t('ui.feedback.feedbackModal.checkbox.research')}
                                                     isChecked={researchParticipation}
                                                     onChange={() => setResearchParticipation(!researchParticipation)}>
                                                 </Checkbox>
                                                 <Checkbox
                                                     value='policy'
-                                                    label='Yes, Atlassian teams can contact me to learn about my experiences to improve Atlassian products and services.'
+                                                    label={t('ui.feedback.feedbackModal.checkbox.policy')}
                                                     isChecked={canContact}
                                                     onChange={() => setCanContact(!canContact)}>
                                                 </Checkbox>
@@ -178,7 +180,7 @@ const FeedbackConsole = ({}) => {
                         </ModalBody>
                         <ModalFooter>
                             <Button appearance='subtle' onClick={closeModal}>
-                                Cancel
+                                {t('ui.button.cancel')}
                             </Button>
                             <LoadingButton
                                 isLoading={isLoading}
@@ -186,7 +188,7 @@ const FeedbackConsole = ({}) => {
                                 onClick={handleSendFeedback}
                                 isDisabled={!selectedOption || feedbackText.trim() === ''}
                             >
-                                Send Feedback
+                                {t('ui.button.submit.feedback')}
                             </LoadingButton>
                         </ModalFooter>
                     </Modal>

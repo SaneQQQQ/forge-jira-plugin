@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHubi integratsioon",
+      "description": "Seadista oma GitHubi PAT-token",
+      "label": "GitHubi integratsiooni seaded"
+    },
+    "issueContext": {
+      "title": "GitHubi integratsioon",
+      "description": "Vaata seotud GitHubi Pull Requeste",
+      "label": "Pull Requestid"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Ühtegi Pull Requesti ei leitud",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Haru",
+        "state": "Olek",
+        "actions": "Toimingud"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "suletud",
+          "approved": "heaks kiidetud",
+          "open": "avatud"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Esita küsimus",
+        "comment": "Jäta kommentaar",
+        "bug": "Teata veast",
+        "suggestion": "Tee parandusettepanek"
+      },
+      "feedbackQuestions": {
+        "ask": "Mida soovid teada?",
+        "comment": "Anna teada, mis sul mõttes on",
+        "bug": "Kirjelda viga või probleemi",
+        "suggestion": "Anna teada, mida soovid parandada",
+        "default": "Sinu tagasiside"
+      },
+      "feedbackConsole": {
+        "question": "Kas sul on probleeme GitHubi integratsiooniga?"
+      },
+      "feedbackModal": {
+        "header": "Jaga oma mõtteid",
+        "selectLabel": "Vali tagasiside",
+        "selectPlaceholder": "Vali...",
+        "selectHelperMessage": "Vali oma tagasiside tüüp",
+        "feedbackPlaceholder": "Kirjuta siia...",
+        "checkbox": {
+          "research": "Soovin osaleda tootearenduse uuringutes.",
+          "policy": "Jah, Atlassiani meeskonnad võivad minuga ühendust võtta, et õppida minu kogemustest Atlassiani toodete ja teenuste parandamiseks."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Sisu laadimine..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHubi token on vajalik",
+      "description": "Sa ei ole veel seadistanud GitHubi Personal Access Tokenit (PAT). See token on vajalik, et rakendus pääseks ligi sinu repodele."
+    },
+    "popUpMessage": {
+      "success": "Sinu token on edukalt salvestatud.",
+      "warning": "Sinu token on edukalt eemaldatud.",
+      "error": "Sinu token on vigane või aegunud. Palun genereeri uus ja proovi uuesti."
+    },
+    "adminPage": {
+      "header": "GitHubi Personal Access Token",
+      "instruction": {
+        "text": "Sisesta oma GitHubi Personal Access Token (PAT), et jätkata. Õpi, kuidas seda luua: ",
+        "link": "Isiklike juurdepääsutokenite haldamine."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Sisesta oma token siia",
+        "errorMessage": "Vigane tokeni formaat. Kontrolli ja proovi uuesti.",
+        "helperMessage": "Kasuta peenhäälestatud või klassikalist PAT-i, mis on loodud sinu GitHubi konto seadetes.",
+        "validMessage": "Paistab hea! Tokeni formaat on kehtiv."
+      },
+      "showPrivateRepo": "Kuva privaatsed repositooriumid"
+    },
+    "button": {
+      "submit": {
+        "token": "Salvesta token",
+        "feedback": "Saada tagasiside"
+      },
+      "edit": "Muuda",
+      "remove": "Eemalda",
+      "approve": "Kinnita",
+      "merge": "Ühenda",
+      "feedback": "Anna tagasisidet",
+      "cancel": "Tühista",
+      "settings": "Ava rakenduse seaded"
+    }
+  }
+}

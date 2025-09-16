@@ -1,4 +1,10 @@
-import {approvePr, getAllPrs, getAllRepos, getAllReviews, mergePr} from '../client/githubApiClient';
+import {
+    approvePullRequest,
+    getAllPullRequestReviews,
+    getAllRepoPullRequests,
+    getAllRepos,
+    mergePullRequest
+} from '../client/githubApiClient';
 
 export const getAllGitHubRepos = async () => {
     try {
@@ -24,7 +30,7 @@ export const getAllGitHubPRsForRepoByIssueKey = async ({payload}) => {
     const repoName = payload.repository.name;
 
     try {
-        const response = await getAllPrs(repoOwner, repoName);
+        const response = await getAllRepoPullRequests(repoOwner, repoName);
         const prs = response.data.map(({number, title, html_url, state, user, head, merged_at}) => ({
                     id: number,
                     title,
@@ -54,7 +60,7 @@ export const getAllGitHubPRsForRepoByIssueKey = async ({payload}) => {
 
                 return {
                     ...pr,
-                    state: normalizePrState(pr.merged, pr.state, reviewState),
+                    state: normalizePullRequestState(pr.merged, pr.state, reviewState),
                 };
             }));
     } catch (err) {
@@ -70,7 +76,7 @@ export const mergeGitHubPr = async ({payload}) => {
     const repoName = payload.repository.name;
 
     try {
-        const response = await mergePr(id, repoOwner, repoName)
+        const response = await mergePullRequest(id, repoOwner, repoName)
         return response.status === 200 && response.data.merged === true;
     } catch (err) {
         const errorMessage = `Error merging PR with #id - ${id}: ${err.message}`;
@@ -85,7 +91,7 @@ export const approveGitHubPr = async ({payload}) => {
     const repoName = payload.repository.name;
 
     try {
-        const response = await approvePr(id, repoOwner, repoName);
+        const response = await approvePullRequest(id, repoOwner, repoName);
         return response.status === 200 && response.data.state === 'APPROVED';
     } catch (err) {
         const errorMessage = `Error approving PR with #id - ${id}: ${err.message}`;
@@ -96,7 +102,7 @@ export const approveGitHubPr = async ({payload}) => {
 
 const getLatestReviewState = async (id, repoOwner, repoName) => {
     try {
-        return await getAllReviews(id, repoOwner, repoName)
+        return await getAllPullRequestReviews(id, repoOwner, repoName)
             .then(res => res.data?.filter(review =>
                 review.user.login.toLowerCase() === repoOwner.toLowerCase()).sort((a, b) =>
                 new Date(b.submitted_at) - new Date(a.submitted_at))[0]?.state || null);
@@ -107,7 +113,7 @@ const getLatestReviewState = async (id, repoOwner, repoName) => {
     }
 }
 
-const normalizePrState = (merged, prState, reviewState) => {
+const normalizePullRequestState = (merged, prState, reviewState) => {
     if (prState === 'closed') return 'closed';
     if (reviewState === 'APPROVED') return 'approved';
     return 'open';

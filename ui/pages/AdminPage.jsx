@@ -11,7 +11,7 @@ import ForgeReconciler, {
     FormHeader,
     FormSection,
     Heading,
-    HelperMessage,
+    HelperMessage, I18nProvider,
     Image,
     Inline,
     Label,
@@ -23,38 +23,31 @@ import ForgeReconciler, {
     Textfield,
     Toggle,
     useForm,
+    useTranslation,
     ValidMessage
 } from '@forge/react';
 
 const AdminPage = () => {
-    const {handleSubmit,
+    const {t} = useTranslation();
+    const {
+        handleSubmit,
         register,
         getFieldId,
-        formState: {
-            errors,
-            touchedFields}} = useForm();
+        formState: {errors, touchedFields}} = useForm();
     const [token, setToken] = useState(null);
+    const [privateRepoVisibility, setPrivateRepoVisibility] = useState(false);
     const [popUpType, setPopUpMessageType] = useState(null);
     const [isSaved, setIsSaved] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [isLoadingButton, setIsLoadingButton] = useState(false);
     const [isLoadingContent, setIsLoadingContent] = useState(true);
 
-    const validateToken = async (token) => {
-        return await invoke('validateToken', {token: token});
-    };
-
-    const saveToken = async (token) => {
-        return await invoke('saveToken', {token: token});
-    };
-
-    const loadToken = async () => {
-        return await invoke('loadToken');
-    };
-
-    const removeToken = async () => {
-        return await invoke('removeToken');
-    };
+    const validateToken = async (value) => await invoke('validateToken', {token: value});
+    const saveToken = async (value) => await invoke('saveToken', {token: value});
+    const loadToken = async () => await invoke('loadToken');
+    const removeToken = async () => await invoke('removeToken');
+    const savePrivateRepoVisibility = async (value) => await invoke('setPrivateRepoVisibility', {privateRepoVisibility: value});
+    const loadPrivateRepoVisibility = async () => await invoke('getPrivateRepoVisibility');
 
     const submitToken = async (data) => {
         setIsLoadingButton(true);
@@ -67,9 +60,9 @@ const AdminPage = () => {
         }
 
         if (await saveToken(data.token)) {
-            setEditMode(false);
             setToken(data.token);
             setIsSaved(true);
+            setEditMode(false);
             setPopUpMessageType(POPUP_MESSAGE_TYPE.SAVED);
         }
 
@@ -83,41 +76,55 @@ const AdminPage = () => {
     const handleRemove = async () => {
         setIsLoadingButton(true);
         await removeToken();
+        await savePrivateRepoVisibility(false);
+
         setToken(null);
         setIsSaved(false);
         setEditMode(false);
+        setPrivateRepoVisibility(false);
         setPopUpMessageType(POPUP_MESSAGE_TYPE.REMOVED);
         setIsLoadingButton(false);
     };
 
+    const handleToggleChange = async () => {
+        const newValue = !privateRepoVisibility;
+        setPrivateRepoVisibility(newValue);
+        await savePrivateRepoVisibility(newValue);
+    };
+
     useEffect(() => {
-        const populateToken = async () => {
-            const saved = await loadToken();
-            if (saved) {
-                setToken(saved);
+        const initialize = async () => {
+            const savedToken = await loadToken();
+            if (savedToken) {
+                setToken(savedToken);
                 setIsSaved(true);
             }
+
+            const savedVisibility = await loadPrivateRepoVisibility();
+            setPrivateRepoVisibility(savedVisibility ?? false);
+
+            setIsLoadingContent(false);
         };
-        populateToken().then(() => setIsLoadingContent(false));
+        initialize();
     }, []);
 
     return (
         <>
-            <LoadingSpinner isLoading={isLoadingContent}>
-                <Box paddingInline='space.600'>
+            <LoadingSpinner isLoading={isLoadingContent} height={600} size='xlarge'>
+                <Box>
                     <Form onSubmit={handleSubmit(submitToken)}>
                         <FormHeader>
                             <Stack alignInline='center' space='space.150'>
                                 <Box>
                                     <Heading size='large'>
-                                        GitHub Personal Access Token
+                                        {t('ui.adminPage.header')}
                                     </Heading>
                                 </Box>
                                 <Box>
-                                    <Text>
-                                        Enter your GitHub Personal Access Token (PAT) to continue. Learn how to create one:{' '}
+                                    <Text align='center'>
+                                        {t('ui.adminPage.instruction.text')}
                                         <Link openNewTab={true} href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank">
-                                            Managing your personal access tokens.
+                                            {t('ui.adminPage.instruction.link')}
                                         </Link>
                                     </Text>
                                 </Box>
@@ -127,62 +134,69 @@ const AdminPage = () => {
                             </Stack>
                         </FormHeader>
                         <FormSection>
-                            <Stack grow="fill" space='space.150'>
-                                <Inline alignInline='center'>
-                                    <Box paddingInline='space.1000'>
-                                        <PopUpMessage type={popUpType}></PopUpMessage>
-                                    </Box>
-                                </Inline>
-                                {(editMode || !isSaved) && (
-                                    <Box paddingInline='space.1000'>
-                                        <Box paddingInline='space.1000'>
-                                            <Box paddingInline='space.1000'>
-                                            <Label labelFor={getFieldId("token")}>
-                                                Personal Access Token
-                                                <RequiredAsterisk />
-                                            </Label>
-                                            <Textfield defaultValue={token} type='password' placeholder="Place your token here" {...register("token", {
-                                                required: true,
-                                                pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
-                                            {errors["token"] && (
-                                                <ErrorMessage>
-                                                    Invalid token format. Please check and try again.
-                                                </ErrorMessage>
-                                            )}
-                                            {!touchedFields["token"] && !errors["token"] && (
-                                                <HelperMessage>
-                                                    Use a fine-grained or classic PAT generated in your GitHub account settings.
-                                                </HelperMessage>
-                                            )}
-                                            {touchedFields["token"] && !errors["token"] && (
-                                                <ValidMessage>
-                                                    Looks good! Valid token format.
-                                                </ValidMessage>
-                                            )}
-                                            </Box>
+                            <Inline alignInline='center'>
+                                <Box xcss={{
+                                    minWidth: '400px',
+                                    width: '100%',
+                                }}>
+                                    <Inline alignInline='center'>
+                                        <Box paddingBlockEnd='space.200'>
+                                            <PopUpMessage type={popUpType}></PopUpMessage>
                                         </Box>
-                                    </Box>
-                                )}
-                                {!editMode && isSaved && (
-                                    <Box paddingInline='space.1000'>
-                                        <Box paddingInline='space.1000'>
-                                            <Box paddingInline='space.1000'>
+                                    </Inline>
+                                    {(editMode || !isSaved) && (
+                                        <Inline alignInline='center'>
+                                            <Box xcss={{
+                                                minWidth: '400px',
+                                                width: '830px',
+                                            }}>
+                                                <Label labelFor={getFieldId("token")}>
+                                                    {t('ui.adminPage.tokenInput.label')}
+                                                    <RequiredAsterisk />
+                                                </Label>
+                                                <Textfield defaultValue={token} type='password' placeholder={t('ui.adminPage.tokenInput.placeholder')} {...register("token", {
+                                                    required: true,
+                                                    pattern: /^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$/ })} />
+                                                {errors["token"] && (
+                                                    <ErrorMessage>
+                                                        {t('ui.adminPage.tokenInput.errorMessage')}
+                                                    </ErrorMessage>
+                                                )}
+                                                {!touchedFields["token"] && !errors["token"] && (
+                                                    <HelperMessage>
+                                                        {t('ui.adminPage.tokenInput.helperMessage')}
+                                                    </HelperMessage>
+                                                )}
+                                                {touchedFields["token"] && !errors["token"] && (
+                                                    <ValidMessage>
+                                                        {t('ui.adminPage.tokenInput.validMessage')}
+                                                    </ValidMessage>
+                                                )}
+                                            </Box>
+                                        </Inline>
+                                    )}
+                                    {!editMode && isSaved && (
+                                        <Inline alignInline='center'>
+                                            <Box xcss={{
+                                                minWidth: '400px',
+                                                width: '830px',
+                                            }}>
                                                 <Label labelFor="savedToken">
-                                                    Personal Access Token
+                                                    {t('ui.adminPage.tokenInput.label')}
                                                 </Label>
                                                 <Textfield value={token} type='password' isDisabled/>
                                             </Box>
-                                        </Box>
-                                    </Box>
-                                )}
-                            </Stack>
+                                        </Inline>
+                                    )}
+                                </Box>
+                            </Inline>
                         </FormSection>
                         {(editMode || !isSaved) && (
                             <Box paddingBlockStart='space.250'>
                                 <Inline alignInline='center'>
                                     <LoadingButton isLoading={isLoadingButton} appearance="primary" type="submit">
-                                        <Box paddingInline='space.1000'>
-                                            Save Token
+                                        <Box paddingInline='space.800'>
+                                            {t('ui.button.submit.token')}
                                         </Box>
                                     </LoadingButton>
                                 </Inline>
@@ -192,28 +206,29 @@ const AdminPage = () => {
                             <Box paddingBlockStart='space.400'>
                                 <Inline alignInline='center' space='space.300'>
                                     <Button onClick={handleEdit}>
-                                        <Box paddingInline='space.1000'>
-                                            Edit
+                                        <Box paddingInline='space.800'>
+                                            {t('ui.button.edit')}
                                         </Box>
                                     </Button>
                                     <LoadingButton isLoading={isLoadingButton} onClick={handleRemove} appearance="danger">
-                                        <Box paddingInline='space.1000'>
-                                            Remove
+                                        <Box paddingInline='space.800'>
+                                            {t('ui.button.remove')}
                                         </Box>
                                     </LoadingButton>
                                 </Inline>
                             </Box>
                         )}
-                        {/* TODO: implement repository fetching based on this property */}
                         <Box paddingBlockStart='space.250'>
                             <Inline alignInline='center' alignBlock='center'>
-                                <Toggle id='toggle'></Toggle>
+                                <Toggle id='toggle'
+                                        isChecked={privateRepoVisibility}
+                                        onChange={handleToggleChange}>
+                                </Toggle>
                                 <Box>
-                                    <Label labelFor='toggle'>Show private repositories</Label>
+                                    <Label labelFor='toggle'>{t('ui.adminPage.showPrivateRepo')}</Label>
                                 </Box>
                             </Inline>
                         </Box>
-                        {/* TODO: implement repository fetching based on this property */}
                     </Form>
                     <FeedbackConsole/>
                 </Box>
@@ -224,6 +239,8 @@ const AdminPage = () => {
 
 ForgeReconciler.render(
     <React.StrictMode>
-        <AdminPage />
+        <I18nProvider>
+            <AdminPage/>
+        </I18nProvider>
     </React.StrictMode>
 );

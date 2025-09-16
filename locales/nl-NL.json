@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub-integratie",
+      "description": "Configureer je GitHub PAT-token",
+      "label": "Instellingen voor GitHub-integratie"
+    },
+    "issueContext": {
+      "title": "GitHub-integratie",
+      "description": "Bekijk gerelateerde GitHub Pull Requests",
+      "label": "Pull Requests"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Geen Pull Requests gevonden",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Branch",
+        "state": "Status",
+        "actions": "Acties"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "gesloten",
+          "approved": "goedgekeurd",
+          "open": "open"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Stel een vraag",
+        "comment": "Laat een reactie achter",
+        "bug": "Meld een bug",
+        "suggestion": "Stel een verbetering voor"
+      },
+      "feedbackQuestions": {
+        "ask": "Wat wil je graag weten?",
+        "comment": "Laat ons weten wat je denkt",
+        "bug": "Beschrijf de bug of het probleem",
+        "suggestion": "Laat ons weten wat je zou willen verbeteren",
+        "default": "Jouw feedback"
+      },
+      "feedbackConsole": {
+        "question": "Problemen met je GitHub-integratie?"
+      },
+      "feedbackModal": {
+        "header": "Deel je gedachten",
+        "selectLabel": "Selecteer feedback",
+        "selectPlaceholder": "Selecteer...",
+        "selectHelperMessage": "Kies een type feedback",
+        "feedbackPlaceholder": "Typ hier...",
+        "checkbox": {
+          "research": "Ik wil graag deelnemen aan productonderzoek.",
+          "policy": "Ja, Atlassian-teams mogen contact met mij opnemen om te leren over mijn ervaringen en Atlassian-producten en -diensten te verbeteren."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Inhoud wordt geladen..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub-token vereist",
+      "description": "Je hebt nog geen GitHub Personal Access Token (PAT) ingesteld. Dit token is vereist zodat de app toegang kan krijgen tot je repositories."
+    },
+    "popUpMessage": {
+      "success": "Je token is succesvol opgeslagen.",
+      "warning": "Je token is succesvol verwijderd.",
+      "error": "Je token is ongeldig of verlopen. Genereer een nieuwe en probeer het opnieuw."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Voer je GitHub Personal Access Token (PAT) in om verder te gaan. Leer hoe je er een maakt: ",
+        "link": "Beheren van je persoonlijke toegangstokens."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Plaats je token hier",
+        "errorMessage": "Ongeldig tokenformaat. Controleer dit en probeer opnieuw.",
+        "helperMessage": "Gebruik een fijnmazige of klassieke PAT die is gegenereerd in je GitHub-accountinstellingen.",
+        "validMessage": "Ziet er goed uit! Geldig tokenformaat."
+      },
+      "showPrivateRepo": "Privérepositories weergeven"
+    },
+    "button": {
+      "submit": {
+        "token": "Token opslaan",
+        "feedback": "Feedback versturen"
+      },
+      "edit": "Bewerken",
+      "remove": "Verwijderen",
+      "approve": "Goedkeuren",
+      "merge": "Mergen",
+      "feedback": "Geef feedback",
+      "cancel": "Annuleren",
+      "settings": "App-instellingen openen"
+    }
+  }
+}

@@ -2,6 +2,7 @@ import Resolver from '@forge/resolver';
 import {sendFeedback} from "../service/feedbackService";
 import {isTokenSet, loadToken, removeToken, saveToken, validateToken} from '../service/githubApiTokenService';
 import {approveGitHubPr, getAllGitHubPRsForRepoByIssueKey, getAllGitHubRepos, mergeGitHubPr} from '../service/issueContextService';
+import {getPrivateRepoVisibility, setPrivateRepoVisibility} from "../service/repoVisibilityService";
 
 const resolver = new Resolver();
 
@@ -15,6 +16,9 @@ resolver.define('getAllGitHubRepos', getAllGitHubRepos);
 resolver.define('getAllGitHubPRsForRepoByIssueKey', getAllGitHubPRsForRepoByIssueKey);
 resolver.define('mergeGitHubPr', mergeGitHubPr);
 resolver.define('approveGitHubPr', approveGitHubPr);
+
+resolver.define('getPrivateRepoVisibility', getPrivateRepoVisibility);
+resolver.define('setPrivateRepoVisibility', setPrivateRepoVisibility);
 
 resolver.define('sendFeedback', sendFeedback);
 

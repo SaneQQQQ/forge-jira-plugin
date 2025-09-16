@@ -1,0 +1,101 @@
+{
+  "app": {
+    "adminPage": {
+      "title": "GitHub-integrasjon",
+      "description": "Konfigurer GitHub PAT-tokenet ditt",
+      "label": "Innstillinger for GitHub-integrasjon"
+    },
+    "issueContext": {
+      "title": "GitHub-integrasjon",
+      "description": "Se relaterte GitHub Pull Requests",
+      "label": "Pull Requests"
+    }
+  },
+  "ui": {
+    "pullRequestTable": {
+      "emptyState": "Ingen Pull Requests funnet",
+      "head": {
+        "pullRequest": "Pull Request",
+        "branch": "Branch",
+        "state": "Status",
+        "actions": "Handlinger"
+      },
+      "pullRequest": {
+        "state": {
+          "closed": "lukket",
+          "approved": "godkjent",
+          "open": "åpen"
+        }
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {
+        "ask": "Still et spørsmål",
+        "comment": "Legg igjen en kommentar",
+        "bug": "Rapporter en feil",
+        "suggestion": "Foreslå en forbedring"
+      },
+      "feedbackQuestions": {
+        "ask": "Hva vil du vite?",
+        "comment": "Fortell oss hva du tenker",
+        "bug": "Beskriv feilen eller problemet",
+        "suggestion": "Fortell oss hva du ønsker å forbedre",
+        "default": "Din tilbakemelding"
+      },
+      "feedbackConsole": {
+        "question": "Har du problemer med GitHub-integrasjonen?"
+      },
+      "feedbackModal": {
+        "header": "Del dine tanker",
+        "selectLabel": "Velg tilbakemelding",
+        "selectPlaceholder": "Velg...",
+        "selectHelperMessage": "Velg en type tilbakemelding",
+        "feedbackPlaceholder": "Skriv her...",
+        "checkbox": {
+          "research": "Jeg ønsker å delta i produktforskning.",
+          "policy": "Ja, Atlassian-team kan kontakte meg for å lære om mine erfaringer og forbedre Atlassian-produkter og tjenester."
+        }
+      }
+    },
+    "spinner": {
+      "label": "Laster innhold..."
+    },
+    "noTokenEmptyState": {
+      "header": "GitHub-token kreves",
+      "description": "Du har ikke satt opp et GitHub Personal Access Token (PAT) ennå. Dette tokenet kreves for at appen skal få tilgang til dine repositorier."
+    },
+    "popUpMessage": {
+      "success": "Tokenet ditt er lagret.",
+      "warning": "Tokenet ditt er fjernet.",
+      "error": "Tokenet ditt er ugyldig eller utløpt. Generer et nytt og prøv igjen."
+    },
+    "adminPage": {
+      "header": "GitHub Personal Access Token",
+      "instruction": {
+        "text": "Skriv inn GitHub Personal Access Token (PAT) for å fortsette. Lær hvordan du lager et: ",
+        "link": "Administrere dine personlige tilgangstokener."
+      },
+      "tokenInput": {
+        "label": "Personal Access Token",
+        "placeholder": "Sett inn token her",
+        "errorMessage": "Ugyldig token-format. Sjekk og prøv igjen.",
+        "helperMessage": "Bruk et finmasket eller klassisk PAT som er generert i GitHub-kontoens innstillinger.",
+        "validMessage": "Ser bra ut! Gyldig token-format."
+      },
+      "showPrivateRepo": "Vis private repositorier"
+    },
+    "button": {
+      "submit": {
+        "token": "Lagre token",
+        "feedback": "Send tilbakemelding"
+      },
+      "edit": "Rediger",
+      "remove": "Fjern",
+      "approve": "Godkjenn",
+      "merge": "Slå sammen",
+      "feedback": "Gi tilbakemelding",
+      "cancel": "Avbryt",
+      "settings": "Åpne app-innstillinger"
+    }
+  }
+}
