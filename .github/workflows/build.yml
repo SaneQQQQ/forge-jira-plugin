@@ -19,12 +19,38 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Set execute permissions for scripts
+        run: |
+          chmod +x ./scripts/i18n-generate-diff.sh
+          chmod +x ./scripts/i18n-apply-diff.sh
+
+      - name: Generate diff
+        run: ./scripts/i18n-generate-diff.sh
+
+      - name: Check if diff is empty
+        id: check_diff
+        run: |
+          has_content=$(jq '[.. | scalars] | length' ./locales/i18n-diff.json)
+          if [[ "$has_content" -eq 0 ]]; then
+            echo "Diff file has no actual translations, stopping workflow."
+            echo "empty=true" >> $GITHUB_OUTPUT
+          else
+            echo "Diff file contains translations, proceeding."
+            echo "empty=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if diff is empty
+        if: steps.check_diff.outputs.empty == 'true'
+        run: exit 0
+
       - name: Run LibreTranslate with Docker
+        if: steps.check_diff.outputs.empty == 'false'
         run: |
           docker pull libretranslate/libretranslate:latest
           docker run -d --rm --name libretranslate -p 5000:5000 libretranslate/libretranslate:latest
 
       - name: Wait for LibreTranslate to be ready
+        if: steps.check_diff.outputs.empty == 'false'
         run: |
           for i in {1..60}; do
             echo "Attempt $i/60..."
@@ -38,17 +64,12 @@ jobs:
           echo "ERROR: LibreTranslate did not start in time."
           exit 1
 
-      - name: Set execute permissions
-        run: |
-          chmod +x ./scripts/i18n-generate-diff.sh
-          chmod +x ./scripts/i18n-apply-diff.sh
-
-      - name: Run scripts
-        run: |
-          ./scripts/i18n-generate-diff.sh
-          ./scripts/i18n-apply-diff.sh
+      - name: Run translation apply script
+        if: steps.check_diff.outputs.empty == 'false'
+        run: ./scripts/i18n-apply-diff.sh
 
       - name: Commit and push changes
+        if: steps.check_diff.outputs.empty == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
