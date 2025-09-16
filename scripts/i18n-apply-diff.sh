@@ -29,10 +29,11 @@ translate_json() {
   local target="$2"
   local translated="$json"
 
-  jq -r 'paths(scalars) | map(tostring) | join(".")' <<< "$json" | while read path; do
-    orig=$(jq -r ".$path" <<< "$translated")
-    trans=$(translate_string "$orig" "$target")
-    translated=$(jq --arg v "$trans" ".$path = \$v" <<< "$translated")
+  paths=$(jq -r 'paths(scalars) | map(tostring) | join(".")' <<< "$json")
+  for path in $paths; do
+      orig=$(jq -r ".$path" <<< "$translated")
+      trans=$(translate_string "$orig" "$target")
+      translated=$(jq --arg v "$trans" ".$path = \$v" <<< "$translated")
   done
 
   echo "$translated"
@@ -41,12 +42,22 @@ translate_json() {
 for FILE in "$LOCALES_DIR"/*.json; do
   BASENAME=$(basename "$FILE")
   if [[ "$BASENAME" != "$(basename "$DIFF_FILE")" ]]; then
-    TARGET_LANG=$(echo "$BASENAME" | cut -d'-' -f1 | tr '[:upper:]' '[:lower:]')
+    case "$BASENAME" in
+      "pt-BR.json") TARGET_LANG="pt-BR" ;;
+      "zh-CN.json") TARGET_LANG="zh-Hans" ;;
+      "zh-TW.json") TARGET_LANG="zh-Hant" ;;
+      "no-NO.json") TARGET_LANG="nb" ;;
+      *) TARGET_LANG=$(echo "$BASENAME" | cut -d'-' -f1 | tr '[:upper:]' '[:lower:]') ;;
+    esac
     echo "Translating missing keys for $BASENAME (target: $TARGET_LANG)..."
 
     TRANSLATED_DIFF=$(translate_json "$(cat "$DIFF_FILE")" "$TARGET_LANG")
 
-    jq -s '.[0] * .[1]' "$FILE" <(echo "$TRANSLATED_DIFF") > "$FILE.tmp" && mv "$FILE.tmp" "$FILE"
+    if [[ -n "$TRANSLATED_DIFF" && "$TRANSLATED_DIFF" != "null" ]]; then
+      jq -s '.[0] * .[1]' "$FILE" <(echo "$TRANSLATED_DIFF") > "$FILE.tmp" && mv "$FILE.tmp" "$FILE"
+    else
+      echo "No translations generated for $FILE, skipping merge."
+    fi
   fi
 done
 

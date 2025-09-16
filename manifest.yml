@@ -93,8 +93,6 @@ translations:
       path: locales/fr-FR.json
     - key: hu-HU
       path: locales/hu-HU.json
-    - key: is-IS
-      path: locales/is-IS.json
     - key: it-IT
       path: locales/it-IT.json
     - key: ja-JP

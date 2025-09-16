@@ -2,7 +2,7 @@
 
 APP_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 
-EN_FILE="$APP_ROOT/locales/en-US.json"
+EN_FILE="$APP_ROOT/locales/default/en-US.json"
 RU_FILE="$APP_ROOT/locales/ru-RU.json"
 DIFF_FILE="$APP_ROOT/locales/i18n-diff.json"
 
