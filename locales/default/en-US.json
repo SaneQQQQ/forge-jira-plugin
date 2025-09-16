@@ -13,6 +13,7 @@
   },
   "ui": {
     "test": "cat",
+    "test2": "dog",
     "pullRequestTable": {
       "emptyState": "No pull requests found",
       "head": {
