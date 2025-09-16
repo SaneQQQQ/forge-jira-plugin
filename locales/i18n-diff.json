@@ -1,0 +1,32 @@
+{
+  "app": {
+    "adminPage": {},
+    "issueContext": {}
+  },
+  "ui": {
+    "pullRequestTable": {
+      "head": {},
+      "pullRequest": {
+        "state": {}
+      }
+    },
+    "feedback": {
+      "feedbackOptions": {},
+      "feedbackQuestions": {},
+      "feedbackConsole": {},
+      "feedbackModal": {
+        "checkbox": {}
+      }
+    },
+    "spinner": {},
+    "noTokenEmptyState": {},
+    "popUpMessage": {},
+    "adminPage": {
+      "instruction": {},
+      "tokenInput": {}
+    },
+    "button": {
+      "submit": {}
+    }
+  }
+}
