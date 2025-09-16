@@ -33,7 +33,7 @@ jobs:
       - name: Wait for LibreTranslate to be ready
         run: |
           for i in {1..100}; do
-            if curl -X 'GET' \ 'http://localhost:5000/frontend/settings' \ -H 'accept: application/json'; then
+            if curl -s -X GET "http://localhost:5000/frontend/settings" -H "accept: application/json"; then
               echo "LibreTranslate is ready"
               break
             fi
