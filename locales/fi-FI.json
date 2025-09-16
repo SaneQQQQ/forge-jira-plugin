@@ -55,8 +55,7 @@
           "research": "Haluaisin osallistua tuotekehityksen tutkimukseen.",
           "policy": "Kyllä, Atlassianin tiimit voivat ottaa minuun yhteyttä oppiakseen kokemuksistani ja parantaakseen Atlassianin tuotteita ja palveluja."
         }
-      },
-      "test": "test"
+      }
     },
     "spinner": {
       "label": "Ladataan sisältöä..."

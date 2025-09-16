@@ -55,8 +55,7 @@
           "research": "Rád(a) bych se účastnil(a) výzkumu produktu.",
           "policy": "Ano, týmy Atlassian mě mohou kontaktovat, aby se dozvěděly o mých zkušenostech a zlepšily produkty a služby Atlassian."
         }
-      },
-      "test": "test"
+      }
     },
     "spinner": {
       "label": "Načítání obsahu..."

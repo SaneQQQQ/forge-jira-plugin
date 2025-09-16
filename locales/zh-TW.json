@@ -55,8 +55,7 @@
           "research": "我願意參與產品研究。",
           "policy": "是的，Atlassian 團隊可以聯繫我，了解我的使用經驗，以改進 Atlassian 的產品和服務。"
         }
-      },
-      "test": "test"
+      }
     },
     "spinner": {
       "label": "正在載入內容..."

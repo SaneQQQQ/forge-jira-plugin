@@ -55,8 +55,7 @@
           "research": "Jeg vil gerne deltage i produktundersøgelser.",
           "policy": "Ja, Atlassian-teams må kontakte mig for at lære om mine erfaringer og forbedre Atlassians produkter og tjenester."
         }
-      },
-      "test": "test"
+      }
     },
     "spinner": {
       "label": "Indlæser indhold..."
