@@ -97,6 +97,7 @@
       "cancel": "Cancelar",
       "settings": "Abrir configuración de la aplicación"
     },
-    "test": "gato"
+    "test": "gato",
+    "test2": "perro"
   }
 }

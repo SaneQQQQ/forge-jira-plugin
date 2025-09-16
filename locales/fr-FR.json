@@ -97,6 +97,7 @@
       "cancel": "Annuler",
       "settings": "Ouvrir les paramètres de l'application"
     },
-    "test": "chat"
+    "test": "chat",
+    "test2": "chien"
   }
 }

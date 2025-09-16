@@ -97,6 +97,7 @@
       "cancel": "Abbrechen",
       "settings": "App-Einstellungen öffnen"
     },
-    "test": "katze"
+    "test": "katze",
+    "test2": "hund"
   }
 }
