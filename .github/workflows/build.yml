@@ -22,17 +22,21 @@ jobs:
       - name: Run LibreTranslate with Docker
         run: |
           docker pull libretranslate/libretranslate:latest
-          docker run -d --name libretranslate -p 5000:5000 libretranslate/libretranslate:latest
+          docker run -d --rm --name libretranslate -p 5000:5000 libretranslate/libretranslate:latest
+
+      - name: Show LibreTranslate logs (initial)
+        run: docker logs libretranslate || true
 
       - name: Wait for LibreTranslate to be ready
         run: |
           for i in {1..60}; do
-          if curl -s -X GET "http://localhost:5000/frontend/settings" -H "accept: application/json"; then
-           echo "LibreTranslate is ready"
-           exit 0
-          fi
-          echo "Waiting for LibreTranslate... ($i/100)"
-          sleep 10
+            if curl -s -X GET "http://localhost:5000/frontend/settings" -H "accept: application/json"; then
+              echo "LibreTranslate is ready"
+              exit 0
+            fi
+            echo "Waiting for LibreTranslate... ($i/60)"
+            docker logs libretranslate --since 30s || true
+            sleep 10
           done
           echo "ERROR: LibreTranslate did not start in time."
           exit 1
