@@ -55,7 +55,8 @@
           "research": "Szeretnék részt venni a termékkutatásban.",
           "policy": "Igen, az Atlassian csapatai felvehetik velem a kapcsolatot, hogy megismerjék tapasztalataimat, és javítsák az Atlassian termékeit és szolgáltatásait."
         }
-      }
+      },
+      "test": "test"
     },
     "spinner": {
       "label": "Tartalom betöltése..."

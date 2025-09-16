@@ -55,7 +55,8 @@
           "research": "Ég vil taka þátt í vöru­rannsóknum.",
           "policy": "Já, Atlassian-teymi má hafa samband við mig til að læra af reynslu minni og bæta Atlassian vörur og þjónustu."
         }
-      }
+      },
+      "test": "test"
     },
     "spinner": {
       "label": "Hleð inn efni..."

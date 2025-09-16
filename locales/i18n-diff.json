@@ -12,6 +12,7 @@
     },
     "feedback": {
       "feedbackOptions": {},
+      "test": "test",
       "feedbackQuestions": {},
       "feedbackConsole": {},
       "feedbackModal": {
