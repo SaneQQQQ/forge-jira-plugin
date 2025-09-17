@@ -1,0 +1,50 @@
+name: i18n Automation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{github.head_ref}}
+
+      - name: Make scripts executable
+        run: |
+          chmod +x ./scripts/i18n-apply-diff.sh
+          chmod +x ./scripts/i18n-generate-diff.sh
+          chmod +x ./scripts/start-libre-translation.sh
+
+      - name: Generate i18n diff
+        id: generate_diff
+        run: ./scripts/i18n-generate-diff.sh
+
+      - name: Stop workflow if diff is empty
+        if: steps.generate_diff.outputs.empty == 'true'
+        run: exit 0
+
+      - name: Run LibreTranslate Server
+        if: steps.generate_diff.outputs.empty == 'false'
+        run: ./scripts/start-libre-translation.sh
+
+      - name: Apply translations
+        if: steps.generate_diff.outputs.empty == 'false'
+        run: ./scripts/i18n-apply-diff.sh
+
+      - name: Commit and push translation changes
+        if: steps.generate_diff.outputs.empty == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "i18n: Apply translations to locale files [skip ci]"
+          git push origin HEAD:${{github.head_ref}}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
