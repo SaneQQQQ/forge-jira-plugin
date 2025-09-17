@@ -75,14 +75,14 @@ permissions:
 # Translations
 translations:
   resources:
+    - key: en-US
+      path: locales/default/en-US.json
     - key: cs-CZ
       path: locales/cs-CZ.json
     - key: da-DK
       path: locales/da-DK.json
     - key: de-DE
       path: locales/de-DE.json
-    - key: en-US
-      path: locales/en-US.json
     - key: es-ES
       path: locales/es-ES.json
     - key: et-EE
@@ -93,8 +93,6 @@ translations:
       path: locales/fr-FR.json
     - key: hu-HU
       path: locales/hu-HU.json
-    - key: is-IS
-      path: locales/is-IS.json
     - key: it-IT
       path: locales/it-IT.json
     - key: ja-JP
