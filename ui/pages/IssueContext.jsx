@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import LoadingSpinner from "../components/LoadingSpinner";
 import RepoExpand from "../components/RepoExpand";
 import {invoke} from '@forge/bridge';
-import ForgeReconciler, {I18nProvider, Stack} from '@forge/react'
+import ForgeReconciler, {Box, I18nProvider, Stack} from '@forge/react'
 import NoTokenEmptyState from "../components/NoTokenEmptyState";
+import FeedbackConsole from "../components/FeedbackConsole";
 
 const IssueContext = () => {
     const [repositories, setRepositories] = useState([]);
@@ -41,6 +42,9 @@ const IssueContext = () => {
                     {repositories && repositories.map(repository => (
                         <RepoExpand repository={repository}></RepoExpand>
                     ))}
+                    <Box paddingBlockStart='space.100'>
+                        <FeedbackConsole smallConsoleSize={true}/>
+                    </Box>
                 </Stack>
             </LoadingSpinner>
             <NoTokenEmptyState isTokenSet={isTokenSet}/>

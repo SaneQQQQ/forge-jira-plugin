@@ -25,7 +25,7 @@ import {
     xcss
 } from "@forge/react";
 
-const FeedbackConsole = ({}) => {
+const FeedbackConsole = ({smallConsoleSize = false}) => {
     const {t} = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -96,9 +96,9 @@ const FeedbackConsole = ({}) => {
 
     return (
         <>
-            <Box alignInline='center' padding='space.250'>
+            <Box alignInline='center'>
                 <Stack>
-                    <Text align='center' color='color.text.subtlest'>
+                    <Text size={smallConsoleSize ? 'small' : 'medium'} align='center' color='color.text.subtlest'>
                         {t('ui.feedback.feedbackConsole.question')}
                     </Text>
                     <Inline alignInline='center'>
@@ -111,11 +111,19 @@ const FeedbackConsole = ({}) => {
                         >
                             <Inline alignInline='center'>
                                 <Icon label='feedback' glyph='feedback'/>
-                                <Box paddingBlockStart='space.025'>
-                                    <Text align='center' color='color.text.subtle' weight='medium'>
-                                        {t('ui.button.feedback')}
-                                    </Text>
-                                </Box>
+                                    {smallConsoleSize ? (
+                                        <Box paddingBlockStart='space.050'>
+                                            <Text size='small' align='center' color='color.text.subtle' weight='medium'>
+                                                {t('ui.button.feedback')}
+                                            </Text>
+                                        </Box>
+                                    ) : (
+                                        <Box paddingBlockStart='space.025'>
+                                            <Text size='medium' align='center' color='color.text.subtle' weight='medium'>
+                                                {t('ui.button.feedback')}
+                                            </Text>
+                                        </Box>
+                                    )}
                             </Inline>
                         </Pressable>
                     </Inline>

@@ -34,15 +34,15 @@ const RepoExpand = ({repository}) => {
         }}>
             <Button
                 isSelected={isOpen}
-                appearance="subtle"
-                iconBefore={repository.isPrivate ? "lock-locked" : "lock-unlocked"}
+                appearance='subtle'
+                iconBefore={repository.isPrivate ? 'lock-locked' : 'lock-unlocked'}
                 shouldFitContainer
                 onClick={() => onClick()}
             >
-                <Inline spread="space-between">
+                <Inline spread='space-between'>
                     <Strong>{repository.name}</Strong>
                     <Box>
-                        <Lozenge appearance="success" isBold>
+                        <Lozenge appearance='success' isBold>
                             {repository.language}
                         </Lozenge>
                     </Box>

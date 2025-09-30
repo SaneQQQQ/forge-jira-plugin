@@ -11,7 +11,8 @@ import ForgeReconciler, {
     FormHeader,
     FormSection,
     Heading,
-    HelperMessage, I18nProvider,
+    HelperMessage,
+    I18nProvider,
     Image,
     Inline,
     Label,
@@ -230,7 +231,9 @@ const AdminPage = () => {
                             </Inline>
                         </Box>
                     </Form>
-                    <FeedbackConsole/>
+                    <Box padding='space.250'>
+                        <FeedbackConsole/>
+                    </Box>
                 </Box>
             </LoadingSpinner>
         </>
